@@ -1,14 +1,15 @@
 {
 	"name": "imageMapResizer",
 	"title": "Image Map Resizer",
-	"description": "This jQuery plugin keeps an image map scaled to an image",
+	"description": "This jQuery plugin keeps an image map scaled to the size of an image. This is useful in RWD and fluid website designs. HTML imagemap is scaled on page load and window resize.",
 	"keywords": [
 		"imagemap",
 		"resizer",
 		"responsive",
-		"RWD"
+		"RWD",
+		"fluid"
 	],
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"author": {
 		"name": "David J. Bradshaw",
 		"email": "davidjbradshaw+github@gmail.com"

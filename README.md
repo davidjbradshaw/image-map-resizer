@@ -1,10 +1,10 @@
 # Image Map Resize
 
-This is a jQuery plugin to keep a HTML image map scaled to the size of an image.
+This is a simple jQuery plugin to keep a HTML Image Map scaled to the size of an image. It detects the window being resized and updates the co-ordinates of the image map.
 
 ### Usage
 
-Inclue [jQuery](http://jquery.com) and [jquery.imageMapResizer.js](jquery.imageMapResizer.js) on your page and then add the following call to the bottom of your page:
+Inclue [jQuery](http://jquery.com) and [jquery.imageMapResizer.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/jquery.imageMapResizer.min.js) on your page and then add the following call to the bottom of your page:
 
 ```js
 $('map').imageMapResize();

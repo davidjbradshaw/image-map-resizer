@@ -23,7 +23,7 @@ http://davidjbradshaw.com/imagemap-resizer/example/
 
 ### Bower
 
-This library can be install via the [Bower](http://bower.io) front-end package management system.
+This plugin can be install via the [Bower](http://bower.io) front-end package management system.
 
     bower instal imagemap-resizer
 

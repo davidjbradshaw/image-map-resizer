@@ -21,6 +21,12 @@ $(document).ready(function() {
 ###Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 
+## Bower
+
+This library can be install via the [Bower](http://bower.io) front-end package management system.
+
+    bower instal imagemap-resizer
+
 ### License
 Copyright &copy; 2014 [David J. Bradshaw](https://github.com/davidjbradshaw)
 Licensed under the MIT license.

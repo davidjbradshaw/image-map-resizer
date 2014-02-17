@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Imagemap-resizer by davidjbradshaw</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Imagemap-resizer</h1>
+        <p class="header">JQuery plugin to keep HTML ImageMap scaled to image size.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/davidjbradshaw/imagemap-resizer/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/davidjbradshaw/imagemap-resizer/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/davidjbradshaw/imagemap-resizer">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/davidjbradshaw">davidjbradshaw</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="image-map-resize" class="anchor" href="#image-map-resize"><span class="octicon octicon-link"></span></a>Image Map Resize</h1>
+
+<p><em>This is a simple jQuery plugin to keep HTML Image Maps scaled to the size of an image. It detects the window being resized and updates the co-ordinates of the image map.</em></p>
+
+<h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>Inclue <a href="http://jquery.com">jQuery</a> and <a href="https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/jquery.imageMapResizer.min.js">jquery.imageMapResizer.js</a> on your page and then add the following call to the bottom of your page:</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'map'</span><span class="p">).</span><span class="nx">imageMapResize</span><span class="p">();</span>
+</pre></div>
+
+<p>Or you may want to wrap it in a <code>$(document).ready()</code> function:</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'map'</span><span class="p">).</span><span class="nx">imageMapResize</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h3>
+
+<p><a href="http://davidjbradshaw.com/imagemap-resizer/example/">http://davidjbradshaw.com/imagemap-resizer/example/</a></p>
+
+<h3>
+<a name="bower" class="anchor" href="#bower"><span class="octicon octicon-link"></span></a>Bower</h3>
+
+<p>This plugin can be install via the <a href="http://bower.io">Bower</a> front-end package management system.</p>
+
+<pre><code>bower instal imagemap-resizer
+</code></pre>
+
+<h3>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h3>
+
+<p>Copyright © 2014 <a href="https://github.com/davidjbradshaw">David J. Bradshaw</a>
+Licensed under the MIT license.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-47552253-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>

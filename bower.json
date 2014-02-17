@@ -1,0 +1,34 @@
+{
+  "name": "imageMap-resizer",
+  "version": "0.1.0",
+  "homepage": "https://github.com/davidjbradshaw/imagemap-resizer",
+  "authors": [
+    "David J. Bradshaw <dave@bradshaw.net>"
+  ],
+  "description": "jQuery pluggin for scalling imagemaps to image size.",
+  "main": "js/jquery.imageMapResizer.min.js",
+  "keywords": [
+    "imagemap",
+    "Resizing",
+    "Resizer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "examples",
+    "src",
+    "*.md",
+    "AUTHORS.txt",
+    "grunt.js",
+    "gruntfile.js",
+    "package.json",
+    "bower.json"
+  ],
+  "dependencies": {
+    "jQuery": ">=1.7"
+  }
+}

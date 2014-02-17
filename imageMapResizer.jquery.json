@@ -1,32 +1,34 @@
 {
-"name": "imagemap-resizer",
-"title": "Image Map Resizer",
-"description": "This jQuery plugin keeps an imagemap scaled to an image",
-"keywords": [
-"iimagemap",
-"resizer"
-],
-"version": "0.1.0",
-"author": {
-"name": "David J. Bradshaw",
-"email": "davidjbradshaw+github@gmail.com"
-},
-"maintainers": [
-{
-"name": "David J. Bradshaw",
-"email": "davidjbradshaw+github@gmail.com"
-}
-],
-"licenses": [
-{
-"type": "MIT",
-"url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
-}
-],
-"bugs": "https://github.com/davidjbradshaw/imagemap-resizer/issues",
-"homepage": "http://davidjbradshaw.github.io/imagemap-resizer/",
-"docs": "https://github.com/davidjbradshaw/imagemap-resizer",
-"dependencies": {
-"jquery": ">=1.7"
-}
+	"name": "imageMapResizer",
+	"title": "Image Map Resizer",
+	"description": "This jQuery plugin keeps an image map scaled to an image",
+	"keywords": [
+		"imagemap",
+		"resizer",
+		"responsive",
+		"RWD"
+	],
+	"version": "0.1.0",
+	"author": {
+		"name": "David J. Bradshaw",
+		"email": "davidjbradshaw+github@gmail.com"
+	},
+	"maintainers": [
+	{
+		"name": "David J. Bradshaw",
+		"email": "davidjbradshaw+github@gmail.com"
+	}
+	],
+	"licenses": [
+	{
+		"type": "MIT",
+		"url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
+	}
+	],
+	"bugs": "https://github.com/davidjbradshaw/imagemap-resizer/issues",
+	"homepage": "http://davidjbradshaw.github.io/imagemap-resizer/",
+	"docs": "https://github.com/davidjbradshaw/imagemap-resizer",
+	"dependencies": {
+	"jquery": ">=1.7"
+	}
 }

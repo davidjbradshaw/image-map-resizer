@@ -4,7 +4,7 @@
 
 ### Usage
 
-Inclue [jQuery](http://jquery.com) and [jquery.imageMapResizer.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/jquery.imageMapResizer.min.js) on your page and then add the following call to the bottom of your page:
+Inclue [jQuery](http://jquery.com) and [jquery.imageMapResizer.min.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/jquery.imageMapResizer.min.js) on your page and then add the following call to the bottom of your page:
 
 ```js
 $('map').imageMapResize();

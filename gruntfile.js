@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         src: 'gruntfile.js'
       },
       code: {
-        src: ['js/**/*.js','!js/**/*.min.js']
+        src: ['src/**/*.js']
       },
     },
 
@@ -50,9 +50,9 @@ module.exports = function(grunt) {
       main: {
         options:{
           banner:'<%= meta.banner %>',
-          sourceMap: 'js/jquery.imageMapResizer.map'
+          sourceMap: 'src/jquery.imageMapResizer.map'
         },
-        src: ['js/jquery.imageMapResizer.js'],
+        src: ['src/jquery.imageMapResizer.js'],
         dest: 'js/jquery.imageMapResizer.min.js',
       }
     },
@@ -123,10 +123,10 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['notest']);
-  grunt.registerTask('notest',  ['jshint','uglify']);
+  grunt.registerTask('notest',  ['jshint','uglify','replace']);
   grunt.registerTask('test',    ['jshint','qunit']);
 
-  grunt.registerTask('postBump',['uglify','bump-commit','shell']);
+  grunt.registerTask('postBump',['uglify','replace','bump-commit','shell']);
   grunt.registerTask('patch',   ['default','bump-only:patch','postBump']);
   grunt.registerTask('minor',   ['default','bump-only:minor','postBump']);
   grunt.registerTask('major',   ['default','bump-only:major','postBump']);

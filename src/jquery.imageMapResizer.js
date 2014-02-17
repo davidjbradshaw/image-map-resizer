@@ -7,7 +7,7 @@
 
 (function($){
 
-    //'use strict';
+    'use strict';
 
     var defaults = {
         debug: false
@@ -52,7 +52,7 @@
                 var
                     i, j, clen,
                     newCoords = [],
-                    sizeFactorWidth  = getCurrentImageWidth() / imageWidth;
+                    sizeFactorWidth  = getCurrentImageWidth() / imageWidth,
                     sizeFactorHeight = getCurrentImageHeight() / imageHeight;
 
                 for (i = 0; i < len; i++) {

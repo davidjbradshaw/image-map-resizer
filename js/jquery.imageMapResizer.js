@@ -7,7 +7,7 @@
 
 (function($){
 
-    function setUpImageMaps(){
+    function setUpImageMap(){
         function getCoords(){
             for (var i = 0; i < len; i++) {
                 coords[i] = areas[i].coords.split(',');

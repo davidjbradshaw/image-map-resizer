@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     meta: {
       banner: '/*! Image Map Resizer (jquery.imageMapResizer.min.js ) - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-        ' *  Desc: Resize HTML imageMap to scalled image.\n' +
+        ' *  Desc: Resize HTML imageMap to scaled image.\n' +
         ' *  Copyright: (c) <%= grunt.template.today("yyyy") %> David J. Bradshaw - dave@bradshaw.net\n' +
         ' *  License: MIT\n */\n',
  

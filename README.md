@@ -18,6 +18,23 @@ $(document).ready(function() {
 });
 ```
 
+### A note on IE8 and below
+
+This code uses JavaScripts native `Array.map()` function, which 
+
+
+```js
+//PolyFil for IE8 and below
+//Map jQuery.map to native Array.map
+if (!Array.prototype.map){
+  Array.prototype.map = function(func) {
+    return jQuery.map(this,func);
+  };
+}
+
+$('map').imageMapResize();
+```
+
 ###Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 

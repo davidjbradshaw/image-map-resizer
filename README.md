@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 ### A note on IE8 and below
 
-This code uses JavaScripts native `Array.map()` function, which is not supported in IE8 and below. To work around this you can use the (Array.prototype.map Polyfil)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map] or use the following code to map the jQuery map function to the native one.
+This code uses JavaScripts native `Array.map()` function, which is not supported in IE8 and below. To work around this you can use the [Array.prototype.map Polyfil](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) or use the following code to map the jQuery map function to the native one.
 
 ```js
 //PolyFil for IE8 and below

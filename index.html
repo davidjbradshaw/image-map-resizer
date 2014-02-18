@@ -38,7 +38,7 @@
 <h3>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
 
-<p>Inclue <a href="http://jquery.com">jQuery</a> and <a href="https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/jquery.imageMapResizer.min.js">jquery.imageMapResizer.js</a> on your page and then add the following call to the bottom of your page:</p>
+<p>Inclue <a href="http://jquery.com">jQuery</a> and <a href="https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/jquery.imageMapResizer.min.js">jquery.imageMapResizer.min.js</a> on your page and then add the following call to the bottom of your page:</p>
 
 <div class="highlight highlight-js"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'map'</span><span class="p">).</span><span class="nx">imageMapResize</span><span class="p">();</span>
 </pre></div>
@@ -56,9 +56,25 @@
 <p><a href="http://davidjbradshaw.com/imagemap-resizer/example/">http://davidjbradshaw.com/imagemap-resizer/example/</a></p>
 
 <h3>
+<a name="a-note-on-ie8-and-below" class="anchor" href="#a-note-on-ie8-and-below"><span class="octicon octicon-link"></span></a>A note on IE8 and below</h3>
+
+<p>This code uses JavaScripts native <code>Array.map()</code> function, which is not supported in IE8 and below. To work around this you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map Polyfil</a> or use the following code to map the jQuery map function to the native one.</p>
+
+<div class="highlight highlight-js"><pre><span class="c1">//PolyFil for IE8 and below</span>
+<span class="c1">//Map jQuery.map to native Array.map</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">map</span><span class="p">){</span>
+  <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">map</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">func</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This code needs to be run before the <code>$('map').imageMapResize();</code> call.</p>
+
+<h3>
 <a name="bower" class="anchor" href="#bower"><span class="octicon octicon-link"></span></a>Bower</h3>
 
-<p>This plugin can be install via the <a href="http://bower.io">Bower</a> front-end package management system.</p>
+<p>This plugin can be installed via the <a href="http://bower.io">Bower</a> front-end package management system.</p>
 
 <pre><code>bower instal imagemap-resizer
 </code></pre>
@@ -67,7 +83,7 @@
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h3>
 
 <p>Copyright © 2014 <a href="https://github.com/davidjbradshaw">David J. Bradshaw</a>
-Licensed under the MIT license.</p>
+Licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a>.</p>
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>

@@ -18,6 +18,9 @@ $(document).ready(function() {
 });
 ```
 
+###Example
+http://davidjbradshaw.com/imagemap-resizer/example/
+
 ### A note on IE8 and below
 
 This code uses JavaScripts native `Array.map()` function, which is not supported in IE8 and below. To work around this you can use the [Array.prototype.map Polyfil](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) or use the following code to map the jQuery map function to the native one.
@@ -34,9 +37,6 @@ if (!Array.prototype.map){
 
 This code needs to be run before the `$('map').imageMapResize();` call.
 
-###Example
-http://davidjbradshaw.com/imagemap-resizer/example/
-
 ### Bower
 
 This plugin can be installed via the [Bower](http://bower.io) front-end package management system.
@@ -45,4 +45,4 @@ This plugin can be installed via the [Bower](http://bower.io) front-end package 
 
 ### License
 Copyright &copy; 2014 [David J. Bradshaw](https://github.com/davidjbradshaw)
-Licensed under the MIT license.
+Licensed under the [MIT license](http://opensource.org/licenses/MIT).

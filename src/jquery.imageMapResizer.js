@@ -9,30 +9,25 @@
 
     'use strict';
 
-    var defaults = {
-        debug: false
-    };
-
     $.fn.imageMapResize = function(options){
-        var settings = $.extend( {}, defaults, options );
 
         return this.each(function(){
             function getCoords(){
-                for (var i = 0; i < len; i++) {
-                    coords[i] = areas[i].coords.split(',');
-                }
+                cachedAreaCoordArray = Array.prototype.map.call(areas,function (e) { 
+                    return e.coords;
+                });
             }
 
-            function getSourceImageWidthAndThenResizeMap(){
+            function getSourceImageDimensionsAndThenResizeMap(){
                 $mapImg.each(function(){
                     var
                         sourceImage = this,
                         testImage = new Image();
 
                     testImage.onload = function(){
-                        imageWidth  = testImage.width;
-                        imageHeight = testImage.height;
-                        if ((sourceImage.width !== imageWidth) || (sourceImage.height !== imageHeight))
+                        sourceImageWidth  = testImage.width;
+                        sourceImageHeight = testImage.height;
+                        if ((sourceImage.width !== sourceImageWidth) || (sourceImage.height !== sourceImageHeight))
                             resizeMap();
                     };
 
@@ -40,46 +35,40 @@
                 });
             }
 
-            function getCurrentImageWidth(){
-                return $mapImg.width();
-            }
-
-            function getCurrentImageHeight(){
-                return $mapImg.height();
-            }
-
             function resizeMap() {
-                var
-                    i, j, clen,
-                    newCoords = [],
-                    sizeFactorWidth  = getCurrentImageWidth() / imageWidth,
-                    sizeFactorHeight = getCurrentImageHeight() / imageHeight;
 
-                for (i = 0; i < len; i++) {
-                    clen = coords[i].length;
-                    newCoords[i] = [];
+                function resizeAreaTag(cachedAreaCoords){
 
-                    for (j = 0; j < clen; j+=2) {
-                        newCoords[i][j]   = parseInt(coords[i][j]   * sizeFactorWidth,  10);
-                        newCoords[i][j+1] = parseInt(coords[i][j+1] * sizeFactorHeight, 10);
+                    function toInt(i) { return parseInt(i,10); }
+
+                    function processCoord(e){
+                        return e * (1===(isWidth = 1-isWidth) ? scallingFactorWidth : scallingFactorHeight);
                     }
 
-                    areas[i].coords = newCoords[i].join(',');
-                    if (settings.debug) console.debug('['+areas[i].alt+'] '+ areas[i].coords);
+                    var isWidth = 0;
+
+                    return cachedAreaCoords.split(',').map(toInt).map(processCoord).join(',');
                 }
+
+                var
+                    scallingFactorWidth  = $mapImg.width()  / sourceImageWidth,
+                    scallingFactorHeight = $mapImg.height() / sourceImageHeight;
+
+                for (var i=0; i < areasLen ; i++)
+                    areas[i].coords = resizeAreaTag(cachedAreaCoordArray[i]);
             }
 
             var
-                map        = this,
-                $mapImg    = $('img[usemap=#'+$(map).attr('name')+']'),
-                areas      = map.getElementsByTagName('area'),
-                len        = areas.length,
-                coords     = [],
-                imageWidth,
-                imageHeight;
+                map      = this,
+                $mapImg  = $('img[usemap=#'+$(map).attr('name')+']'),
+                areas    = map.getElementsByTagName('area'),
+                areasLen = areas.length,
+                cachedAreaCoordArray = [],
+                sourceImageWidth,
+                sourceImageHeight;
             
             getCoords();
-            getSourceImageWidthAndThenResizeMap();
+            getSourceImageDimensionsAndThenResizeMap();
             
             $(window).on('resize', resizeMap);
         });

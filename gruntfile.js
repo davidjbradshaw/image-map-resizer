@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     meta: {
-      banner: '/*! Image Map Resizer (jquery.imageMapResizer.min.js ) - v<%= pkg.version %> - ' +
+      banner: '/*! Image Map Resizer (imageMapResizer.min.js ) - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         ' *  Desc: Resize HTML imageMap to scaled image.\n' +
         ' *  Copyright: (c) <%= grunt.template.today("yyyy") %> David J. Bradshaw - dave@bradshaw.net\n' +
@@ -50,10 +50,10 @@ module.exports = function(grunt) {
       main: {
         options:{
           banner:'<%= meta.banner %>',
-          sourceMap: 'src/jquery.imageMapResizer.map'
+          sourceMap: 'src/imageMapResizer.map'
         },
-        src: ['src/jquery.imageMapResizer.js'],
-        dest: 'js/jquery.imageMapResizer.min.js',
+        src: ['src/imageMapResizer.js'],
+        dest: 'js/imageMapResizer.min.js',
       }
     },
 

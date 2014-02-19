@@ -1,10 +1,23 @@
 # Image Map Resize
 
-*This is a simple jQuery plugin to keep HTML Image Maps scaled to the size of an image. It detects the window being resized and updates the co-ordinates of the image map.*
+*This is a simple library to keep HTML Image Maps scaled to the size of an image. It detects the window being resized and updates the co-ordinates of the image map.*
 
-### Usage
+*This library can be used with or without jQuery*
 
-Inclue [jQuery](http://jquery.com) and [jquery.imageMapResizer.min.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/jquery.imageMapResizer.min.js) on your page and then add the following call to the bottom of your page:
+### Standalone Usage
+
+Inclue the [imageMapResizer.min.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) srcipt then add the following call to the bottom of your page:
+
+```js
+imageMapResize();
+```
+
+Optionally you can pass a CSS selector that returns a collection of map tags. For example 'map.myMap'.
+
+
+### Usage with jQuery
+
+Inclue [jQuery](http://jquery.com) and the [imageMapResizer.min.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) script and then add the following call to the bottom of your page:
 
 ```js
 $('map').imageMapResize();
@@ -23,19 +36,14 @@ http://davidjbradshaw.com/imagemap-resizer/example/
 
 ### A note on IE8 and below
 
-This code uses JavaScripts native `Array.map()` function, which is not supported in IE8 and below. To work around this you can use the [Array.prototype.map Polyfil](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) or use the following code to map the jQuery map function to the native one.
+To use this library with IE8 you will need to also load the [ie8.polyfil.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/ie8.polyfil.js) and ensure IE8 is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to you HTML head section.
 
-```js
-//PolyFil for IE8 and below
-//Map jQuery.map to native Array.map
-if (!Array.prototype.map){
-  Array.prototype.map = function(func) {
-    return jQuery.map(this,func);
-  };
-}
+```html
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--[if lte IE 8]>
+	<script type="text/javascript" src="../js/ie8.polyfil.js"></script>
+<![endif]-->
 ```
-
-This code needs to be run before the `$('map').imageMapResize();` call.
 
 ### Bower
 

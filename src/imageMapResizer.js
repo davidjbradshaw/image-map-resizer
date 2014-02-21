@@ -42,7 +42,7 @@
         function listenForResize(){
             function debounce() {
                 clearTimeout(timer);
-                timer = setTimeout(resizeMap, 400);
+                timer = setTimeout(resizeMap, 100);
             }
             if (window.addEventListener) window.addEventListener('resize', debounce, false);
             else if (window.attachEvent) window.attachEvent('onresize', debounce);

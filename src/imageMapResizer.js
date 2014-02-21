@@ -7,16 +7,6 @@
 (function(){
     'use strict';
 
-    window.imageMapResize = function(selector){
-        Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),scaleImageMap);
-    };
-
-    if(window.jQuery)
-        jQuery.fn.imageMapResize = function(){
-            return this.find('map').each(function(){ scaleImageMap(this); });
-        };
-
-
     function scaleImageMap(map){
         function resizeMap() {
             function resizeAreaTag(cachedAreaCoords){
@@ -72,4 +62,14 @@
         start();
         listenForResize();
     }
+
+    window.imageMapResize = function imageMapResizeF(selector){
+        Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),scaleImageMap);
+    };
+
+    if(window.jQuery)
+        jQuery.fn.imageMapResize = function $imageMapResizeF(){
+            return this.find('map').each(function $imageMapResizeF2(){ scaleImageMap(this); });
+        };
+
 })();

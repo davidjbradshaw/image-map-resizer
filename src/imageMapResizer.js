@@ -5,8 +5,17 @@
  */
 
 (function(){
-
     'use strict';
+
+    window.imageMapResize = function(selector){
+        Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),scaleImageMap);
+    };
+
+    if(window.jQuery)
+        jQuery.fn.imageMapResize = function(){
+            return this.find('map').each(function(){ scaleImageMap(this); });
+        };
+
 
     function scaleImageMap(map){
         function resizeMap() {
@@ -28,6 +37,27 @@
                 areas[i].coords = resizeAreaTag(cachedAreaCoordsArray[i]);
         }
 
+        function start(){
+            var testImage = new Image();
+            testImage.onload = function(){
+                sourceImageWidth  = testImage.width;
+                sourceImageHeight = testImage.height;
+
+                if ((displayedImage.width !== sourceImageWidth) || (displayedImage.height !== sourceImageHeight))
+                    resizeMap();
+            };
+            testImage.src = displayedImage.src;
+        }
+
+        function listenForResize(){
+            function debounce() {
+                clearTimeout(timer);
+                timer = setTimeout(resizeMap, 400);
+            }
+            if (window.addEventListener) window.addEventListener('resize', debounce, false);
+            else if (window.attachEvent) window.attachEvent('onresize', debounce);
+        }
+
         if('MAP' !== map.tagName) throw new TypeError('Expected <map> tag, found <'+map.tagName+'>.');
 
         var
@@ -35,31 +65,11 @@
             areasLen              = areas.length,
             cachedAreaCoordsArray = Array.prototype.map.call(areas,function (e) { return e.coords; }),
             displayedImage        = document.querySelector('img[usemap="#'+map.name+'"]'),
-            testImage             = new Image(),
-            sourceImageWidth,
-            sourceImageHeight;
+            timer                 = null,
+            sourceImageWidth      = null,
+            sourceImageHeight     = null;
         
-        testImage.onload = function(){
-            sourceImageWidth  = testImage.width;
-            sourceImageHeight = testImage.height;
-
-            if ((displayedImage.width !== sourceImageWidth) || (displayedImage.height !== sourceImageHeight))
-                resizeMap();
-            
-            if (window.addEventListener) window.addEventListener('resize', resizeMap, false);
-            else if (window.attachEvent) window.attachEvent('onresize', resizeMap);
-        };
-
-        testImage.src = displayedImage.src;
+        start();
+        listenForResize();
     }
-
-    window.imageMapResize = function(selector){
-        Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),scaleImageMap);
-    };
-
-    if(window.jQuery)
-        jQuery.fn.imageMapResize = function(){
-            return this.each(function(){ scaleImageMap(this); });
-        };
-
 })();

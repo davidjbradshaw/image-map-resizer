@@ -69,7 +69,7 @@
 
     if(window.jQuery)
         jQuery.fn.imageMapResize = function $imageMapResizeF(){
-            return this.find('map').each(function $imageMapResizeF2(){ scaleImageMap(this); });
+            return this.filter('map').each(function $imageMapResizeF2(){ scaleImageMap(this); });
         };
 
 })();

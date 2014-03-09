@@ -4,7 +4,7 @@
 
 *This library can be used with or without jQuery*
 
-### Standalone Usage
+### Native JS Usage
 
 Inclue the [imageMapResizer.min.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) srcipt then add the following call to the bottom of your page:
 
@@ -15,7 +15,7 @@ imageMapResize();
 Optionally you can pass a CSS selector that returns a collection of map tags. For example 'map.myMap'.
 
 
-### Usage with jQuery
+### jQuery Usage
 
 Inclue [jQuery](http://jquery.com) and the [imageMapResizer.min.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) script and then add the following call to the bottom of your page:
 
@@ -34,14 +34,14 @@ $(document).ready(function() {
 ###Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 
-### A note on IE8 and below
+### A note on IE8
 
-To use this library with IE8 you will need to also load the [ie8.polyfil.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/ie8.polyfil.js) and ensure IE8 is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to you HTML head section.
+To use this library with IE8 you will need to also load the [ie8.polyfil.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/ie8.polyfil.js) and ensure IE8 is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to your HTML head section.
 
 ```html
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!--[if lte IE 8]>
-	<script type="text/javascript" src="../js/ie8.polyfil.js"></script>
+	<script type="text/javascript" src="js/ie8.polyfil.js"></script>
 <![endif]-->
 ```
 

@@ -7,7 +7,7 @@
 (function(){
     'use strict';
 
-    function scaleImageMap(map){
+    function scaleImageMap(element){
         function resizeMap() {
             function resizeAreaTag(cachedAreaCoords){
                 function scaleCoord(e){
@@ -24,15 +24,19 @@
                 height : displayedImage.height / sourceImage.height
             };
 
-            for (var i=0; i < areasLen ; i++)
+            for (var i=0; i < areasLen ; i++) {
                 areas[i].coords = resizeAreaTag(cachedAreaCoordsArray[i]);
+            }
         }
 
         function start(){
+            //WebKit asyncs image loading, so we have to catch the load event.
             sourceImage.onload = function sourceImageOnLoadF(){
-                if ((displayedImage.width !== sourceImage.width) || (displayedImage.height !== sourceImage.height))
+                if ((displayedImage.width !== sourceImage.width) || (displayedImage.height !== sourceImage.height)) {
                     resizeMap();
+                }
             };
+            //Make copy of image, so we can get the actual size measurements
             sourceImage.src = displayedImage.src;
         }
 
@@ -41,13 +45,17 @@
                 clearTimeout(timer);
                 timer = setTimeout(resizeMap, 250);
             }
-            if (window.addEventListener) window.addEventListener('resize', debounce, false);
-            else if (window.attachEvent) window.attachEvent('onresize', debounce);
+            if (window.addEventListener) { window.addEventListener('resize', debounce, false); }
+            else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
         }
 
-        if('MAP' !== map.tagName) throw new TypeError('Expected <map> tag, found <'+map.tagName+'>.');
+        if(element && 'MAP' !== element.tagName) { 
+            throw new TypeError('Expected <MAP> tag, found <'+element.tagName+'>.');
+        }
 
         var
+            /*jshint validthis:true */
+            map                   = element || this, // native || jQuery 
             areas                 = map.getElementsByTagName('area'),
             areasLen              = areas.length,
             cachedAreaCoordsArray = Array.prototype.map.call(areas,function (e) { return e.coords; }),
@@ -63,9 +71,9 @@
         Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),scaleImageMap);
     };
 
-    if(window.jQuery)
+    if('jQuery' in window) {
         jQuery.fn.imageMapResize = function $imageMapResizeF(){
-            return this.filter('map').each(function $imageMapResizeF2(){ scaleImageMap(this); });
+            return this.filter('map').each(scaleImageMap);
         };
-
+    }
 })();

@@ -10,7 +10,7 @@
 
       var
           t = Object(this),
-          len = (t.length >>> 0),
+          len = t.length >>> 0,
           res = new Array(len),
           thisArg = arguments.length >= 2 ? arguments[1] : void 0;
 
@@ -34,7 +34,7 @@
 
       var
         t = Object(this),
-        len = (t.length >>> 0),
+        len = t.length >>> 0,
         thisArg = arguments.length >= 2 ? arguments[1] : void 0;
 
       for (var i = 0; i < len; i++){

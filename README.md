@@ -2,7 +2,7 @@
 
 *This is a simple library to keep HTML Image Maps scaled to the size of an image. It detects the window being resized and updates the co-ordinates of the image map.*
 
-*This library can be used with or without jQuery*
+*This library can be used with or without jQuery.*
 
 ### Native JS Usage
 

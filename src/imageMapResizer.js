@@ -7,7 +7,8 @@
 (function(){
     'use strict';
 
-    function scaleImageMap(element){
+    function scaleImageMap(){
+        
         function resizeMap() {
             function resizeAreaTag(cachedAreaCoords){
                 function scaleCoord(e){
@@ -49,13 +50,9 @@
             else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
         }
 
-        if(element && 'MAP' !== element.tagName) { 
-            throw new TypeError('Expected <MAP> tag, found <'+element.tagName+'>.');
-        }
-
         var
             /*jshint validthis:true */
-            map                   = element || this, // native || jQuery 
+            map                   = this, 
             areas                 = map.getElementsByTagName('area'),
             areasLen              = areas.length,
             cachedAreaCoordsArray = Array.prototype.map.call(areas,function (e) { return e.coords; }),
@@ -68,7 +65,14 @@
     }
 
     window.imageMapResize = function imageMapResizeF(selector){
-        Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),scaleImageMap);
+        function init(element){
+            if('MAP' !== element.tagName) { 
+                throw new TypeError('Expected <MAP> tag, found <'+element.tagName+'>.');
+            }
+
+            scaleImageMap.call(element);
+        }
+        Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),init);
     };
 
     if('jQuery' in window) {

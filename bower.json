@@ -1,12 +1,12 @@
 {
   "name": "imageMap-resizer",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "homepage": "https://github.com/davidjbradshaw/imagemap-resizer",
   "authors": [
     "David J. Bradshaw <dave@bradshaw.net>"
   ],
-  "description": "jQuery pluggin for scalling imagemaps to image size.",
-  "main": "js/jquery.imageMapResizer.min.js",
+  "description": "Keep HTML Image Maps scaled to the size of an image. It detects the window being resized and updates the co-ordinates of the image map.",
+  "main": "js/imageMapResizer.min.js",
   "keywords": [
     "imagemap",
     "Resizing",

@@ -17,7 +17,7 @@
 
                 var isWidth = 0;
 
-                return cachedAreaCoords.split(',').map(parseFloat).map(scaleCoord).map(Math.floor).join(',');
+                return cachedAreaCoords.split(',').map(Number).map(scaleCoord).map(Math.floor).join(',');
             }
 
             var scallingFactor = {

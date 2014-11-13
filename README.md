@@ -45,16 +45,6 @@ To use this library with IE8 you will need to also load [ie8.polyfil.js](https:/
 <![endif]-->
 ```
 
-## Install via Package Management Systems
-
-This library can be installed via the [Bower](http://bower.io),
-
-    bower install imagemap-resizer
-
-and [Component](http://component.io) front-end package management systems.
-
-    component install davidjbradshaw/imagemap-resizer
-
 ### License
 Copyright &copy; 2014 [David J. Bradshaw](https://github.com/davidjbradshaw).
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).

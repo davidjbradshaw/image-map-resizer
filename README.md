@@ -9,10 +9,10 @@
 Inclue the [imageMapResizer.min.js](https://raw2.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) srcipt then add the following call to the bottom of your page:
 
 ```js
-imageMapResize();
+imageMapResize([selector || map object]);
 ```
 
-Optionally you can pass a CSS selector that returns a collection of map tags. For example 'map.myMap'.
+Optionally you can pass a CSS selector that returns a collection of map tags, for example 'map.myMap'. Or a direct reference to a map object in the DOM.
 
 
 ### jQuery Usage
@@ -41,7 +41,7 @@ To use this library with IE8 you will need to also load [ie8.polyfil.js](https:/
 ```html
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!--[if lte IE 8]>
-	<script type="text/javascript" src="js/ie8.polyfil.js"></script>
+	<script type="text/javascript" src="js/ie8.polyfil.min.js"></script>
 <![endif]-->
 ```
 

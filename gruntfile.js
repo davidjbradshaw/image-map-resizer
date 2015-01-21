@@ -43,15 +43,13 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        sourceMaps:true,
-        sourceMapIncludeSources:true,
-        sourceMapRoot:'',
+        sourceMap:true,
         report:'gzip',
       },
       main: {
         options:{
           banner:'<%= meta.banner %>',
-          sourceMap: 'imageMapResizer.map'
+          sourceMapName: 'js/imageMapResizer.map'
         },
         src: ['js/imageMapResizer.js'],
         dest: 'js/imageMapResizer.min.js',

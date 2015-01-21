@@ -79,7 +79,7 @@
             switch (typeof(target)){
                 case 'undefined':
                 case 'string':
-                    Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),init);
+                    Array.prototype.forEach.call(document.querySelectorAll(target||'map'),init);
                     break;
                 case 'object':
                     init(target);

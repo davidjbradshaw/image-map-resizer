@@ -64,20 +64,46 @@
         listenForResize();
     }
 
-    window.imageMapResize = function imageMapResizeF(selector){
+
+
+    function factory(){
         function init(element){
-            if('MAP' !== element.tagName) { 
+            if(element.tagName && 'MAP' !== element.tagName.toUpperCase()) {
                 throw new TypeError('Expected <MAP> tag, found <'+element.tagName+'>.');
             }
-
+ 
             scaleImageMap.call(element);
         }
-        Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),init);
-    };
+
+        return function imageMapResizeF(target){
+            switch (typeof(target)){
+                case 'undefined':
+                case 'string':
+                    Array.prototype.forEach.call(document.querySelectorAll(selector||'map'),init);
+                    break;
+                case 'object':
+                    init(target);
+                    break;
+                default:
+                    throw new TypeError('Unexpected data type ('+typeof(target)+').');
+            }      
+        };
+    }
+
+
+    if (typeof define === 'function' && define.amd) {
+        define([],factory);
+    } else if (typeof exports === 'object') { //Node for browserfy
+        module.exports = factory();
+    } else {
+        window.imageMapResize = factory();
+    }
+
 
     if('jQuery' in window) {
         jQuery.fn.imageMapResize = function $imageMapResizeF(){
-            return this.filter('map').each(scaleImageMap);
+            return this.filter('map').each(scaleImageMap).end();
         };
     }
+
 })();

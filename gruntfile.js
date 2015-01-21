@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         src: 'gruntfile.js'
       },
       code: {
-        src: ['src/**/*.js']
+        src: ['js/imageMapResizer.js']
       },
     },
 
@@ -45,14 +45,15 @@ module.exports = function(grunt) {
       options: {
         sourceMaps:true,
         sourceMapIncludeSources:true,
+        sourceMapRoot:'',
         report:'gzip',
       },
       main: {
         options:{
           banner:'<%= meta.banner %>',
-          sourceMap: 'src/imageMapResizer.map'
+          sourceMap: 'imageMapResizer.map'
         },
-        src: ['src/imageMapResizer.js'],
+        src: ['js/imageMapResizer.js'],
         dest: 'js/imageMapResizer.min.js',
       }
     },
@@ -60,26 +61,6 @@ module.exports = function(grunt) {
     watch: {
       files: ['js/**/*'],
       tasks: 'default'
-    },
-
-    replace: {
-      min: {
-        src: ['js/*.min.js'],
-        overwrite: true,
-        replacements: [{
-          from: /sourceMappingURL=src\//g,
-          to: 'sourceMappingURL=..\/src\/'
-        }]
-      },
-
-      map: {
-        src: ['src/*.map'],
-        overwrite: true,
-        replacements: [{
-          from: /src\//g,
-          to: ''
-        }]
-      }
     },
 
     bump: {
@@ -123,10 +104,10 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['notest']);
-  grunt.registerTask('notest',  ['jshint','uglify','replace']);
+  grunt.registerTask('notest',  ['jshint','uglify']);
   grunt.registerTask('test',    ['jshint','qunit']);
 
-  grunt.registerTask('postBump',['uglify','replace','bump-commit','shell']);
+  grunt.registerTask('postBump',['uglify','bump-commit','shell']);
   grunt.registerTask('patch',   ['default','bump-only:patch','postBump']);
   grunt.registerTask('minor',   ['default','bump-only:minor','postBump']);
   grunt.registerTask('major',   ['default','bump-only:major','postBump']);

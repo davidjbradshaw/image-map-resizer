@@ -8,7 +8,7 @@
     'use strict';
 
     function scaleImageMap(){
-        
+
         function resizeMap() {
             function resizeAreaTag(cachedAreaCoords){
                 function scaleCoord(e){
@@ -50,16 +50,21 @@
             else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
         }
 
+        function getCoords(e){
+            // normalize coord-string to csv format without any space chars
+            return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
+        }
+
         var
             /*jshint validthis:true */
             map                   = this, 
             areas                 = map.getElementsByTagName('area'),
             areasLen              = areas.length,
-            cachedAreaCoordsArray = Array.prototype.map.call(areas,function (e) { return e.coords; }),
+            cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
             displayedImage        = document.querySelector('img[usemap="#'+map.name+'"]'),
             sourceImage           = new Image(),
             timer                 = null;
-        
+
         start();
         listenForResize();
     }
@@ -86,7 +91,7 @@
                     break;
                 default:
                     throw new TypeError('Unexpected data type ('+typeof(target)+').');
-            }      
+            }
         };
     }
 

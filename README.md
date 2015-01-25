@@ -1,6 +1,6 @@
 # Image Map Resize
 
-*This is a simple library to keep HTML Image Maps scaled to the size of an image. It detects the window being resized and updates the co-ordinates of the image map.*
+*This is a simple library that makes HTML Image Maps responsive, so that they automagically stay scaled to the size of the image they are attached to. It detects the window being resized and updates the co-ordinates of the image map accordingly.*
 
 *This library can be used with or without jQuery.*
 

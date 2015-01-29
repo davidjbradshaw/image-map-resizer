@@ -73,7 +73,9 @@
 
     function factory(){
         function init(element){
-            if(element.tagName && 'MAP' !== element.tagName.toUpperCase()) {
+            if(!element.tagName) {
+                throw new TypeError('Object is not a valid DOM element');
+            } else if ('MAP' !== element.tagName.toUpperCase()) {
                 throw new TypeError('Expected <MAP> tag, found <'+element.tagName+'>.');
             }
  

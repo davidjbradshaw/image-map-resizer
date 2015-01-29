@@ -45,8 +45,8 @@ To use this library with old IE you will need to also load the included polyfil 
 <![endif]-->
 ```
 
-[![NPM](https://nodei.co/npm/image-map-resizer.png)](https://nodei.co/npm/image-map-resizer/)
-
 ### License
 Copyright &copy; 2014 [David J. Bradshaw](https://github.com/davidjbradshaw).
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+[![NPM](https://nodei.co/npm/image-map-resizer.png)](https://nodei.co/npm/image-map-resizer/)

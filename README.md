@@ -34,9 +34,9 @@ $(document).ready(function() {
 ###Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 
-### A note on IE8
+### A note on IE8 and below
 
-To use this library with IE8 you will need to also load the included polyfil and ensure IE8 is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to your HTML head section.
+To use this library with old IE you will need to also load the included polyfil and ensure IE is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to your HTML head section.
 
 ```html
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

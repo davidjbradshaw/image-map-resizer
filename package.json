@@ -5,6 +5,18 @@
     "type": "git",
     "url": "https://github.com/davidjbradshaw/imagemap-resizer.git"
   },
+  "maintainers": [
+    {
+      "name": "David J. Bradshaw",
+      "email": "dave@bradshaw.net"
+    }
+  ],
+  "description": "Make the HTML image map responsive, so the map scales with the image",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidjbradshaw/imagemap-resizer.git"
+  },
+  "github": "https://github.com/davidjbradshaw/imagemap-resizer",
   "dependencies": {},
   "devDependencies": {
     "grunt": "0.4.1",
@@ -24,5 +36,22 @@
   },
   "engines": {
     "node": ">=0.8.0"
-  }
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "keywords": [
+    "imagemap",
+    "map",
+    "image",
+    "Resizing",
+    "Resizer",
+    "resize",
+    "RWD",
+    "responsive",
+    "jquery-plugin"
+  ]
 }

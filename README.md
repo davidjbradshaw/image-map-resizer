@@ -1,5 +1,9 @@
 # Image Map Resize
 
+[![npm version](https://badge.fury.io/js/image-map-resizer.svg)](http://badge.fury.io/js/image-map-resizer)
+![license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)
+
+
 *This is a simple library that makes HTML Image Maps responsive, so that they automagically stay scaled to the size of the image they are attached to. It detects the window being resized and updates the co-ordinates of the image map accordingly.*
 
 *This library can be used with or without jQuery.*

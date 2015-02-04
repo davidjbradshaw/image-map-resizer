@@ -1,5 +1,5 @@
 # Image Map Resize
-![Bower version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=bo&type=6&v=0.5.3)
+[![Bower version](https://badge.fury.io/bo/iframe-resizer.svg)](http://badge.fury.io/bo/iframe-resizer)
 [![npm version](https://badge.fury.io/js/image-map-resizer.svg)](http://badge.fury.io/js/image-map-resizer)
 ![license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)
 

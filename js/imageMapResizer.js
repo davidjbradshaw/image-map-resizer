@@ -31,28 +31,27 @@
         }
 
         function start(){
-            var displayedWidth = null,
+            var
+                displayedWidth  = null,
                 displayedHeight = null;
-        		
+
             //WebKit asyncs image loading, so we have to catch the load event.
             sourceImage.onload = function sourceImageOnLoadF(){
                 displayedWidth = displayedImage.width;
                 displayedHeight = displayedImage.height;
-            	
+
                 if ((displayedWidth !== sourceImage.width) || (displayedHeight !== sourceImage.height)) {
                     resizeMap();
                 }
-            }
+            };
+
+            //IE11 can late load this image, so make sure we have the correct sizes (#10)
             displayedImage.onload = function() {
-                /* If sourceImage.onload() already fired, but we see different
-                 * displayed dimensions now, trigger a new resize. This fixes a
-                 * problem in IE11 (see #10)
-                 */
-                if (displayedWidth != null && displayedWidth != displayedImage.width) {
-                    //console.log("Displayed image size changed after initial check");
+                if (null !== displayedWidth && displayedImage.width !== displayedWidth) {
                     resizeMap();
                 }
-            }
+            };
+
             //Make copy of image, so we can get the actual size measurements
             sourceImage.src = displayedImage.src;
         }

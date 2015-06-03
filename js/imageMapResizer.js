@@ -10,44 +10,22 @@
     function scaleImageMap(){
 
         function resizeMap() {
-            function resizeAreaTag(cachedAreaCoords){
-                function scaleCoord(e){
-                    return e * scallingFactor[(1===(isWidth = 1-isWidth) ? 'width' : 'height')];
+            function resizeAreaTag(cachedAreaCoords,idx){
+                function scale(coord){
+                    return coord * scallingFactor[(1===(isWidth = 1-isWidth) ? 'width' : 'height')];
                 }
 
                 var isWidth = 0;
 
-                return cachedAreaCoords.split(',').map(Number).map(scaleCoord).map(Math.floor).join(',');
+                areas[idx].coords = cachedAreaCoords.split(',').map(Number).map(scale).map(Math.floor).join(',');
             }
 
             var scallingFactor = {
-                width  : displayedImage.width  / sourceImage.width,
-                height : displayedImage.height / sourceImage.height
+                width  : image.width  / image.naturalWidth,
+                height : image.height / image.naturalHeight
             };
 
-            for (var i=0; i < areasLen ; i++) {
-                areas[i].coords = resizeAreaTag(cachedAreaCoordsArray[i]);
-            }
-        }
-
-        function start(){
-            //WebKit asyncs image loading, so we have to catch the load event.
-            sourceImage.onload = function sourceImageOnLoadF(){
-                if ((displayedImage.width !== sourceImage.width) || (displayedImage.height !== sourceImage.height)) {
-                    resizeMap();
-                }
-            };
-            //Make copy of image, so we can get the actual size measurements
-            sourceImage.src = displayedImage.src;
-        }
-
-        function listenForResize(){
-            function debounce() {
-                clearTimeout(timer);
-                timer = setTimeout(resizeMap, 250);
-            }
-            if (window.addEventListener) { window.addEventListener('resize', debounce, false); }
-            else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
+            cachedAreaCoordsArray.forEach(resizeAreaTag);
         }
 
         function getCoords(e){
@@ -55,18 +33,33 @@
             return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
         }
 
+        function debounce() {
+            clearTimeout(timer);
+            timer = setTimeout(resizeMap, 250);
+        }
+
+        function start(){
+            if ((image.width !== image.naturalWidth) || (image.height !== image.naturalHeight)) {
+                resizeMap();
+            }
+        }
+
         var
             /*jshint validthis:true */
             map                   = this, 
             areas                 = map.getElementsByTagName('area'),
-            areasLen              = areas.length,
             cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
-            displayedImage        = document.querySelector('img[usemap="#'+map.name+'"]'),
-            sourceImage           = new Image(),
+            image                 = document.querySelector('img[usemap="#'+map.name+'"]'),
             timer                 = null;
 
+        map.resize = resizeMap; //Bind resize method to HTML map element
+
+        //Detect late image loads in IE11
+        image.addEventListener('onload', resizeMap, false);
+
+        window.addEventListener('resize', debounce, false);
+
         start();
-        listenForResize();
     }
 
 
@@ -100,12 +93,11 @@
 
     if (typeof define === 'function' && define.amd) {
         define([],factory);
-    } else if (typeof exports === 'object') { //Node for browserfy
-        module.exports = factory();
+    } else if (typeof module === 'object' && typeof module.exports === 'object'){ 
+        module.exports = factory(); //Node for browserfy
     } else {
         window.imageMapResize = factory();
     }
-
 
     if('jQuery' in window) {
         jQuery.fn.imageMapResize = function $imageMapResizeF(){

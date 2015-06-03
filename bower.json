@@ -1,7 +1,7 @@
 {
-  "name": "imageMap-resizer",
+  "name": "image-map-resizer",
   "version": "0.5.3",
-  "homepage": "https://github.com/davidjbradshaw/imagemap-resizer",
+  "homepage": "https://github.com/davidjbradshaw/image-map-resizer",
   "authors": [
     "David J. Bradshaw <dave@bradshaw.net>"
   ],

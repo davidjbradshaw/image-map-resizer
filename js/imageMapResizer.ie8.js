@@ -1,6 +1,6 @@
 /*! Image Map Resizer
  *  Desc: Resize HTML imageMap to scaled image.
- *  Copyright: (c) 2014 David J. Bradshaw - dave@bradshaw.net
+ *  Copyright: (c) 2014-15 David J. Bradshaw - dave@bradshaw.net
  *  License: MIT
  */
 

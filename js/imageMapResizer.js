@@ -1,6 +1,6 @@
 /*! Image Map Resizer
  *  Desc: Resize HTML imageMap to scaled image.
- *  Copyright: (c) 2014 David J. Bradshaw - dave@bradshaw.net
+ *  Copyright: (c) 2014-15 David J. Bradshaw - dave@bradshaw.net
  *  License: MIT
  */
 
@@ -12,12 +12,12 @@
         function resizeMap() {
             function resizeAreaTag(cachedAreaCoords,idx){
                 function scale(coord){
-                    return coord * scallingFactor[(1===(isWidth = 1-isWidth) ? 'width' : 'height')];
+                    return Math.floor(Number(coord) * scallingFactor[(1===(isWidth = 1-isWidth) ? 'width' : 'height')]);
                 }
 
                 var isWidth = 0;
 
-                areas[idx].coords = cachedAreaCoords.split(',').map(Number).map(scale).map(Math.floor).join(',');
+                areas[idx].coords = cachedAreaCoords.split(',').map(scale).join(',');
             }
 
             var scallingFactor = {
@@ -44,6 +44,27 @@
             }
         }
 
+        function attach(){
+            map.resize = resizeMap; //Bind resize method to HTML map element
+            image.addEventListener('onload', resizeMap, false); //Detect late image loads in IE11
+            window.addEventListener('resize', debounce, false);
+        }
+
+        function beenHere(){
+            var retCode = false;
+
+            if (undefined !== map.dataset){
+                if (map.dataset.imageMapResizer){
+                    retCode = true;
+                    console.warn('[ImageMapResize] Already bound to map element.\nUse document.getElementsByName(\'' + map.name + '\')[0].resize(); to force resize.');
+                } else {
+                    map.dataset.imageMapResizer = true;
+                }
+            }
+
+            return retCode;
+        }
+
         var
             /*jshint validthis:true */
             map                   = this, 
@@ -52,14 +73,10 @@
             image                 = document.querySelector('img[usemap="#'+map.name+'"]'),
             timer                 = null;
 
-        map.resize = resizeMap; //Bind resize method to HTML map element
-
-        //Detect late image loads in IE11
-        image.addEventListener('onload', resizeMap, false);
-
-        window.addEventListener('resize', debounce, false);
-
-        start();
+        if (!beenHere()){
+            attach();
+            start(); 
+        }
     }
 
 

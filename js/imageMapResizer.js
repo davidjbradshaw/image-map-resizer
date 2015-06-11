@@ -57,7 +57,7 @@
 
         var
             /*jshint validthis:true */
-            map                   = this, 
+            map                   = this,
             areas                 = map.getElementsByTagName('area'),
             areasLen              = areas.length,
             cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
@@ -65,6 +65,7 @@
             sourceImage           = new Image(),
             timer                 = null;
 
+        displayedImage.onload = start;  //Catch slow loading images
         start();
         listenForResize();
     }
@@ -78,7 +79,7 @@
             } else if ('MAP' !== element.tagName.toUpperCase()) {
                 throw new TypeError('Expected <MAP> tag, found <'+element.tagName+'>.');
             }
- 
+
             scaleImageMap.call(element);
         }
 

@@ -51,14 +51,7 @@
         }
 
         function beenHere(){
-            var retCode = false;
-
-            if ('function' === typeof map._resize){
-                retCode = true;
-                map._resize(); // Already setup, so just resize map
-            }
-
-            return retCode;
+            return ('function' === typeof map._resize);
         }
 
         function setup(){
@@ -76,6 +69,8 @@
             setup();
             attach();
             start();
+        } else {
+            map._resize(); // Already setup, so just resize map
         }
     }
 
@@ -102,7 +97,7 @@
                     init(target);
                     break;
                 default:
-                    throw new TypeError('Unexpected data type ('+typeof(target)+').');
+                    throw new TypeError('Unexpected data type ('+typeof target+').');
             }
         };
     }

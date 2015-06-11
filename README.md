@@ -41,10 +41,10 @@ http://davidjbradshaw.com/imagemap-resizer/example/
 
 ### IE8 Support
 
-Version 1.0 of this project is optimised for IE9 and above. If you still require support for IE8 then please use the [0.5.x version](https://github.com/davidjbradshaw/image-map-resizer/tree/v0.5.x) and follow the instructions on including the IE8 polyfil. Both versions are functionally equivalent.
+Version 1.0 of this project is optimised for IE9 and above. If you still require support for IE8 then please use [version 0.5.x](https://github.com/davidjbradshaw/image-map-resizer/tree/v0.5.x) and follow the instructions on including the IE8 polyfil.
 
 ### License
-Copyright &copy; 2014 [David J. Bradshaw](https://github.com/davidjbradshaw).
+Copyright &copy; 2014-15 [David J. Bradshaw](https://github.com/davidjbradshaw).
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 [![NPM](https://nodei.co/npm/image-map-resizer.png)](https://nodei.co/npm/image-map-resizer/)

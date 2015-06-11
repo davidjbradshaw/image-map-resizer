@@ -1,9 +1,9 @@
 {
-  "name": "imageMap_Resizer",
-  "version": "0.5.3",
+  "name": "image-map-resizer",
+  "version": "0.5.4",
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidjbradshaw/imagemap-resizer.git"
+    "url": "https://github.com/davidjbradshaw/image-map-resizer.git"
   },
   "maintainers": [
     {
@@ -14,9 +14,9 @@
   "description": "Make the HTML image map responsive, so the map scales with the image",
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidjbradshaw/imagemap-resizer.git"
+    "url": "https://github.com/davidjbradshaw/image-map-resizer.git"
   },
-  "github": "https://github.com/davidjbradshaw/imagemap-resizer",
+  "github": "https://github.com/davidjbradshaw/image-map-resizer",
   "dependencies": {},
   "devDependencies": {
     "grunt": "0.4.1",

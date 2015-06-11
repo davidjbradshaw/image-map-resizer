@@ -11,7 +11,7 @@
 		"resize",
 		"design"
 	],
-	"version": "0.5.3",
+	"version": "0.5.4",
 	"author": {
 		"name": "David J. Bradshaw",
 		"email": "davidjbradshaw+github@gmail.com"
@@ -28,9 +28,9 @@
 		"url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
 	}
 	],
-	"bugs": "https://github.com/davidjbradshaw/imagemap-resizer/issues",
-	"homepage": "http://davidjbradshaw.github.io/imagemap-resizer/",
-	"docs": "https://github.com/davidjbradshaw/imagemap-resizer",
+	"bugs": "https://github.com/davidjbradshaw/image-map-resizer/issues",
+	"homepage": "http://davidjbradshaw.github.io/image-map-resizer/",
+	"docs": "https://github.com/davidjbradshaw/image-map-resizer",
 	"dependencies": {
 		"jquery": ">=1.0"
 	}

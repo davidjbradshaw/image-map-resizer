@@ -45,7 +45,7 @@
         }
 
         function attach(){
-            map.resize = resizeMap; //Bind resize method to HTML map element
+            map._resize = resizeMap; //Bind resize method to HTML map element
             image.addEventListener('onload', resizeMap, false); //Detect late image loads in IE11
             window.addEventListener('resize', debounce, false);
         }
@@ -53,29 +53,29 @@
         function beenHere(){
             var retCode = false;
 
-            if (undefined !== map.dataset){
-                if (map.dataset.imageMapResizer){
-                    retCode = true;
-                    console.warn('[ImageMapResize] Already bound to map element.\nUse document.getElementsByName(\'' + map.name + '\')[0].resize(); to force resize.');
-                } else {
-                    map.dataset.imageMapResizer = true;
-                }
+            if ('function' === typeof map._resize){
+                retCode = true;
+                map._resize(); // Already setup, so just resize map
             }
 
             return retCode;
         }
 
+        function setup(){
+            areas                 = map.getElementsByTagName('area');
+            cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords);
+            image                 = document.querySelector('img[usemap="#'+map.name+'"]');
+        }
+
         var
             /*jshint validthis:true */
-            map                   = this, 
-            areas                 = map.getElementsByTagName('area'),
-            cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
-            image                 = document.querySelector('img[usemap="#'+map.name+'"]'),
-            timer                 = null;
+            map   = this,
+            areas = null, cachedAreaCoordsArray = null, image = null, timer = null;
 
         if (!beenHere()){
+            setup();
             attach();
-            start(); 
+            start();
         }
     }
 
@@ -88,7 +88,7 @@
             } else if ('MAP' !== element.tagName.toUpperCase()) {
                 throw new TypeError('Expected <MAP> tag, found <'+element.tagName+'>.');
             }
- 
+
             scaleImageMap.call(element);
         }
 
@@ -107,7 +107,6 @@
         };
     }
 
-
     if (typeof define === 'function' && define.amd) {
         define([],factory);
     } else if (typeof module === 'object' && typeof module.exports === 'object'){ 
@@ -115,6 +114,8 @@
     } else {
         window.imageMapResize = factory();
     }
+
+
 
     if('jQuery' in window) {
         jQuery.fn.imageMapResize = function $imageMapResizeF(){

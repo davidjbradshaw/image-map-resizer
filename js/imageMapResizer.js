@@ -1,6 +1,6 @@
 /*! Image Map Resizer
  *  Desc: Resize HTML imageMap to scaled image.
- *  Copyright: (c) 2014 David J. Bradshaw - dave@bradshaw.net
+ *  Copyright: (c) 2014-15 David J. Bradshaw - dave@bradshaw.net
  *  License: MIT
  */
 
@@ -10,59 +10,22 @@
     function scaleImageMap(){
 
         function resizeMap() {
-            function resizeAreaTag(cachedAreaCoords){
-                function scaleCoord(e){
-                    return e * scallingFactor[(1===(isWidth = 1-isWidth) ? 'width' : 'height')];
+            function resizeAreaTag(cachedAreaCoords,idx){
+                function scale(coord){
+                    return Math.floor(Number(coord) * scallingFactor[(1===(isWidth = 1-isWidth) ? 'width' : 'height')]);
                 }
 
                 var isWidth = 0;
 
-                return cachedAreaCoords.split(',').map(Number).map(scaleCoord).map(Math.floor).join(',');
+                areas[idx].coords = cachedAreaCoords.split(',').map(scale).join(',');
             }
 
             var scallingFactor = {
-                width  : displayedImage.width  / sourceImage.width,
-                height : displayedImage.height / sourceImage.height
+                width  : image.width  / image.naturalWidth,
+                height : image.height / image.naturalHeight
             };
 
-            for (var i=0; i < areasLen ; i++) {
-                areas[i].coords = resizeAreaTag(cachedAreaCoordsArray[i]);
-            }
-        }
-
-        function start(){
-            var
-                displayedWidth  = null,
-                displayedHeight = null;
-
-            //WebKit asyncs image loading, so we have to catch the load event.
-            sourceImage.onload = function sourceImageOnLoadF(){
-                displayedWidth = displayedImage.width;
-                displayedHeight = displayedImage.height;
-
-                if ((displayedWidth !== sourceImage.width) || (displayedHeight !== sourceImage.height)) {
-                    resizeMap();
-                }
-            };
-
-            //IE11 can late load this image, so make sure we have the correct sizes (#10)
-            displayedImage.onload = function() {
-                if (null !== displayedWidth && displayedImage.width !== displayedWidth) {
-                    resizeMap();
-                }
-            };
-
-            //Make copy of image, so we can get the actual size measurements
-            sourceImage.src = displayedImage.src;
-        }
-
-        function listenForResize(){
-            function debounce() {
-                clearTimeout(timer);
-                timer = setTimeout(resizeMap, 250);
-            }
-            if (window.addEventListener) { window.addEventListener('resize', debounce, false); }
-            else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
+            cachedAreaCoordsArray.forEach(resizeAreaTag);
         }
 
         function getCoords(e){
@@ -70,18 +33,50 @@
             return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
         }
 
+        function debounce() {
+            clearTimeout(timer);
+            timer = setTimeout(resizeMap, 250);
+        }
+
+        function start(){
+            if ((image.width !== image.naturalWidth) || (image.height !== image.naturalHeight)) {
+                resizeMap();
+            }
+        }
+
+        function attach(){
+            map.resize = resizeMap; //Bind resize method to HTML map element
+            image.addEventListener('onload', resizeMap, false); //Detect late image loads in IE11
+            window.addEventListener('resize', debounce, false);
+        }
+
+        function beenHere(){
+            var retCode = false;
+
+            if (undefined !== map.dataset){
+                if (map.dataset.imageMapResizer){
+                    retCode = true;
+                    console.warn('[ImageMapResize] Already bound to map element.\nUse document.getElementsByName(\'' + map.name + '\')[0].resize(); to force resize.');
+                } else {
+                    map.dataset.imageMapResizer = true;
+                }
+            }
+
+            return retCode;
+        }
+
         var
             /*jshint validthis:true */
             map                   = this, 
             areas                 = map.getElementsByTagName('area'),
-            areasLen              = areas.length,
             cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
-            displayedImage        = document.querySelector('img[usemap="#'+map.name+'"]'),
-            sourceImage           = new Image(),
+            image                 = document.querySelector('img[usemap="#'+map.name+'"]'),
             timer                 = null;
 
-        start();
-        listenForResize();
+        if (!beenHere()){
+            attach();
+            start(); 
+        }
     }
 
 
@@ -115,12 +110,11 @@
 
     if (typeof define === 'function' && define.amd) {
         define([],factory);
-    } else if (typeof exports === 'object') { //Node for browserfy
-        module.exports = factory();
+    } else if (typeof module === 'object' && typeof module.exports === 'object'){ 
+        module.exports = factory(); //Node for browserfy
     } else {
         window.imageMapResize = factory();
     }
-
 
     if('jQuery' in window) {
         jQuery.fn.imageMapResize = function $imageMapResizeF(){

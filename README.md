@@ -1,6 +1,7 @@
 # Image Map Resize
 [![Bower version](https://badge.fury.io/bo/image-map-resizer.svg)](http://badge.fury.io/bo/image-map-resizer)
 [![npm version](https://badge.fury.io/js/image-map-resizer.svg)](http://badge.fury.io/js/image-map-resizer)
+[![Code Climate](https://codeclimate.com/github/davidjbradshaw/image-map-resizer/badges/gpa.svg)](https://codeclimate.com/github/davidjbradshaw/image-map-resizer)
 ![license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)
 
 
@@ -38,16 +39,9 @@ $(document).ready(function() {
 ###Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 
-### A note on IE8 and below
+### IE8 Support
 
-To use this library with old IE you will need to also load the included polyfil and ensure IE is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to your HTML head section.
-
-```html
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--[if lte IE 8]>
-	<script type="text/javascript" src="js/ie8.polyfil.min.js"></script>
-<![endif]-->
-```
+Version 1.0 of this project is optimised for IE9 and above. If you still require support for IE8 then please use the [0.5.x version](https://github.com/davidjbradshaw/image-map-resizer/tree/v0.5.x) and follow the instructions on including the IE8 polyfil. Both versions are functionally equivalent.
 
 ### License
 Copyright &copy; 2014 [David J. Bradshaw](https://github.com/davidjbradshaw).

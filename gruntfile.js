@@ -53,13 +53,6 @@ module.exports = function(grunt) {
         },
         src: ['js/imageMapResizer.js'],
         dest: 'js/imageMapResizer.min.js',
-      },
-      ie8: {
-        options:{
-          sourceMapName: 'js/ie8.polyfil.map'
-        },
-        src: ['js/ie8.polyfil.js'],
-        dest: 'js/ie8.polyfil.min.js',
       }
     },
 

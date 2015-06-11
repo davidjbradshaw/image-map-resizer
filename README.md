@@ -1,6 +1,7 @@
 # Image Map Resize
 [![Bower version](https://badge.fury.io/bo/image-map-resizer.svg)](http://badge.fury.io/bo/image-map-resizer)
 [![npm version](https://badge.fury.io/js/image-map-resizer.svg)](http://badge.fury.io/js/image-map-resizer)
+[![Code Climate](https://codeclimate.com/github/davidjbradshaw/image-map-resizer/badges/gpa.svg)](https://codeclimate.com/github/davidjbradshaw/image-map-resizer)
 ![license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)
 
 

@@ -46,8 +46,9 @@
 
         function attach(){
             map._resize = resizeMap; //Bind resize method to HTML map element
-            image.addEventListener('onload', resizeMap, false); //Detect late image loads in IE11
-            window.addEventListener('resize', debounce, false);
+            image.addEventListener('onload',  resizeMap, false); //Detect late image loads in IE11
+            window.addEventListener('resize', debounce,  false);
+            window.addEventListener('focus',  resizeMap, false); //Cope with window being resized whilst on another tab
         }
 
         function beenHere(){

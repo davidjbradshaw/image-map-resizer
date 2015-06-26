@@ -65,6 +65,11 @@
             else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
         }
 
+        function listenForFocus(){
+            if (window.addEventListener) { window.addEventListener('focus', resizeMap, false); }
+            else if (window.attachEvent) { window.attachEvent('onfocus', resizeMap); }
+        }
+
         function getCoords(e){
             // normalize coord-string to csv format without any space chars
             return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
@@ -82,6 +87,7 @@
 
         start();
         listenForResize();
+        listenForFocus();
     }
 
 

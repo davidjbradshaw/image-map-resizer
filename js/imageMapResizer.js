@@ -1,6 +1,6 @@
 /*! Image Map Resizer
  *  Desc: Resize HTML imageMap to scaled image.
- *  Copyright: (c) 2014 David J. Bradshaw - dave@bradshaw.net
+ *  Copyright: (c) 2014-15 David J. Bradshaw - dave@bradshaw.net
  *  License: MIT
  */
 
@@ -31,6 +31,12 @@
         }
 
         function start(){
+            function displayedImageLoaded() {
+                if (null !== displayedWidth && displayedImage.width !== displayedWidth) {
+                    resizeMap();
+                }
+            }
+
             var
                 displayedWidth  = null,
                 displayedHeight = null;
@@ -46,11 +52,7 @@
             };
 
             //IE11 can late load this image, so make sure we have the correct sizes (#10)
-            displayedImage.onload = function() {
-                if (null !== displayedWidth && displayedImage.width !== displayedWidth) {
-                    resizeMap();
-                }
-            };
+            addEventListener(window,'load',displayedImageLoaded);
 
             //Make copy of image, so we can get the actual size measurements
             sourceImage.src = displayedImage.src;
@@ -61,8 +63,12 @@
                 clearTimeout(timer);
                 timer = setTimeout(resizeMap, 250);
             }
-            if (window.addEventListener) { window.addEventListener('resize', debounce, false); }
-            else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
+            addEventListener(window,'resize',debounce);
+        }
+
+        function listenForFocus(){
+            //Cope with window being resized whilst on a different tab
+            addEventListener(window,'focus',resizeMap);
         }
 
         function getCoords(e){
@@ -72,7 +78,7 @@
 
         var
             /*jshint validthis:true */
-            map                   = this, 
+            map                   = this,
             areas                 = map.getElementsByTagName('area'),
             areasLen              = areas.length,
             cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
@@ -82,8 +88,14 @@
 
         start();
         listenForResize();
+        listenForFocus();
     }
 
+
+    function addEventListener(obj,evt,func){
+        if ('addEventListener' in window) obj.addEventListener(evt,func, false);
+        else if ('attachEvent' in window) obj.attachEvent('on'+evt,func); //IE8
+    }
 
 
     function factory(){
@@ -93,21 +105,21 @@
             } else if ('MAP' !== element.tagName.toUpperCase()) {
                 throw new TypeError('Expected <MAP> tag, found <'+element.tagName+'>.');
             }
- 
+
             scaleImageMap.call(element);
         }
 
         return function imageMapResizeF(target){
             switch (typeof(target)){
-                case 'undefined':
-                case 'string':
-                    Array.prototype.forEach.call(document.querySelectorAll(target||'map'),init);
-                    break;
-                case 'object':
-                    init(target);
-                    break;
-                default:
-                    throw new TypeError('Unexpected data type ('+typeof(target)+').');
+            case 'undefined':
+            case 'string':
+                Array.prototype.forEach.call(document.querySelectorAll(target||'map'),init);
+                break;
+            case 'object':
+                init(target);
+                break;
+            default:
+                throw new TypeError('Unexpected data type ('+typeof(target)+').');
             }
         };
     }

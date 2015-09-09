@@ -61,11 +61,17 @@
                 clearTimeout(timer);
                 timer = setTimeout(resizeMap, 250);
             }
+            if (window.removeEventListener) { window.removeEventListener('focus', debounce, false); }
+            else if (window.detachEvent) { window.detachEvent('onfocus', debounce); }
+
             if (window.addEventListener) { window.addEventListener('resize', debounce, false); }
             else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
         }
 
         function listenForFocus(){
+            if (window.removeEventListener) { window.removeEventListener('focus', resizeMap, false); }
+            else if (window.detachEvent) { window.detachEvent('onfocus', resizeMap); }
+
             if (window.addEventListener) { window.addEventListener('focus', resizeMap, false); }
             else if (window.attachEvent) { window.attachEvent('onfocus', resizeMap); }
         }
@@ -74,16 +80,33 @@
             // normalize coord-string to csv format without any space chars
             return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
         }
+        function isInt(n) {
+          return n % 1 === 0;
+        }
 
         var
             /*jshint validthis:true */
             map                   = this,
             areas                 = map.getElementsByTagName('area'),
             areasLen              = areas.length,
-            cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
+            cachedAreaCoordsArray = null,
             displayedImage        = document.querySelector('img[usemap="#'+map.name+'"]'),
             sourceImage           = new Image(),
-            timer                 = null;
+            timer                 = null,
+            coords                = '',
+            test = 0;
+
+        /* reset */
+        for (var area in areas) {
+          if(isInt(area)) {
+            coords = areas[area].getAttribute('data-coords');
+            if(coords !== null)
+              areas[area].coords = coords;
+            else areas[area].setAttribute('data-coords',areas[area].coords);
+          }
+        }
+
+        cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords);
 
         start();
         listenForResize();
@@ -118,7 +141,7 @@
         };
     }
 
-
+    window.imageMapResize = null;
     if (typeof define === 'function' && define.amd) {
         define([],factory);
     } else if (typeof exports === 'object') { //Node for browserfy
@@ -129,6 +152,7 @@
 
 
     if('jQuery' in window) {
+        jQuery.fn.imageMapResize = null;
         jQuery.fn.imageMapResize = function $imageMapResizeF(){
             return this.filter('map').each(scaleImageMap).end();
         };

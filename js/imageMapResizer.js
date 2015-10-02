@@ -56,38 +56,55 @@
             sourceImage.src = displayedImage.src;
         }
 
-        function listenForResize(){
+        function addListeners(){
             function debounce() {
                 clearTimeout(timer);
                 timer = setTimeout(resizeMap, 250);
             }
-            if (window.addEventListener) { window.addEventListener('resize', debounce, false); }
-            else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
+
+            addEventListener( window,  'resize',           debounce  );
+            addEventListener( window,  'focus',            resizeMap );
+            addEventListener( document,'fullscreenchange', resizeMap );
         }
 
-        function listenForFocus(){
-            if (window.addEventListener) { window.addEventListener('focus', resizeMap, false); }
-            else if (window.attachEvent) { window.attachEvent('onfocus', resizeMap); }
-        }
 
         function getCoords(e){
             // normalize coord-string to csv format without any space chars
             return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
         }
 
+        function beenHere(){
+            return ('function' === typeof map._resize);
+        }
+
+        function setup(){
+            map._resize           = resizeMap; //Bind resize method to HTML map element
+            areas                 = map.getElementsByTagName('area');
+            areasLen              = areas.length;
+            cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords);
+            displayedImage        = document.querySelector('img[usemap="#'+map.name+'"]');
+            sourceImage           = new Image();
+        }
+
         var
             /*jshint validthis:true */
-            map                   = this,
-            areas                 = map.getElementsByTagName('area'),
-            areasLen              = areas.length,
-            cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
-            displayedImage        = document.querySelector('img[usemap="#'+map.name+'"]'),
-            sourceImage           = new Image(),
-            timer                 = null;
+            map   = this,
+            areas = null, areasLen = null, cachedAreaCoordsArray = null, displayedImage = null, sourceImage = null, timer = null;
 
-        start();
-        listenForResize();
-        listenForFocus();
+        if (!beenHere()){
+            setup();
+            addListeners();
+            start();
+        } else {
+            map._resize(); //Already setup, so just resize map
+        }
+    }
+
+
+
+    function addEventListener(obj,evt,func){
+        if ('addEventListener' in window)obj.addEventListener(evt,func, false);
+        else if ('attachEvent' in window) obj.attachEvent('on'+evt,func); // IE8
     }
 
 
@@ -133,5 +150,56 @@
             return this.filter('map').each(scaleImageMap).end();
         };
     }
+
+})();
+
+
+
+//PolyFils from MDN.
+(function() {
+  if (!Array.prototype.map){
+    Array.prototype.map = function(fun /*, thisArg */){
+      "use strict";
+
+      if (this === void 0 || this === null || typeof fun !== "function"){
+        throw new TypeError();
+      }
+
+      var
+          t = Object(this),
+          len = t.length >>> 0,
+          res = new Array(len),
+          thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+
+      for (var i = 0; i < len; i++){
+        if (i in t) {
+          res[i] = fun.call(thisArg, t[i], i, t);
+        }
+      }
+
+      return res;
+    };
+  }
+
+  if (!Array.prototype.forEach){
+    Array.prototype.forEach = function(fun /*, thisArg */){
+      "use strict";
+
+      if (this === void 0 || this === null || typeof fun !== "function"){
+        throw new TypeError();
+      }
+
+      var
+        t = Object(this),
+        len = t.length >>> 0,
+        thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+
+      for (var i = 0; i < len; i++){
+        if (i in t){
+          fun.call(thisArg, t[i], i, t);
+        }
+      }
+    };
+  }
 
 })();

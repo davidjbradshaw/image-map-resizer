@@ -18,7 +18,6 @@ module.exports = function(grunt) {
         ' *  Desc: Resize HTML imageMap to scaled image.\n' +
         ' *  Copyright: (c) <%= grunt.template.today("yyyy") %> David J. Bradshaw - dave@bradshaw.net\n' +
         ' *  License: MIT\n */\n',
- 
     },
 
     qunit: {
@@ -53,13 +52,6 @@ module.exports = function(grunt) {
         },
         src: ['js/imageMapResizer.js'],
         dest: 'js/imageMapResizer.min.js',
-      },
-      ie8: {
-        options:{
-          sourceMapName: 'js/ie8.polyfil.map'
-        },
-        src: ['js/ie8.polyfil.js'],
-        dest: 'js/ie8.polyfil.min.js',
       }
     },
 

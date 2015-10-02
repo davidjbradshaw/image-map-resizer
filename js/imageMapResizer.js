@@ -29,7 +29,7 @@
         }
 
         function getCoords(e){
-            // normalize coord-string to csv format without any space chars
+            //Normalize coord-string to csv format without any space chars
             return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
         }
 
@@ -47,8 +47,8 @@
         function attach(){
             map._resize = resizeMap; //Bind resize method to HTML map element
             image.addEventListener('onload',  resizeMap, false); //Detect late image loads in IE11
-            window.addEventListener('resize', debounce,  false);
             window.addEventListener('focus',  resizeMap, false); //Cope with window being resized whilst on another tab
+            window.addEventListener('resize', debounce,  false);
         }
 
         function beenHere(){
@@ -71,7 +71,7 @@
             attach();
             start();
         } else {
-            map._resize(); // Already setup, so just resize map
+            map._resize(); //Already setup, so just resize map
         }
     }
 
@@ -105,7 +105,7 @@
 
     if (typeof define === 'function' && define.amd) {
         define([],factory);
-    } else if (typeof module === 'object' && typeof module.exports === 'object'){ 
+    } else if (typeof module === 'object' && typeof module.exports === 'object'){
         module.exports = factory(); //Node for browserfy
     } else {
         window.imageMapResize = factory();

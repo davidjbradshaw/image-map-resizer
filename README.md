@@ -39,19 +39,12 @@ $(document).ready(function() {
 ###Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 
-### A note on IE8 and below
+### IE8 Support
 
-To use this library with old IE you will need to also load the included polyfil and ensure IE is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to your HTML head section.
-
-```html
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--[if lte IE 8]>
-	<script type="text/javascript" src="js/ie8.polyfil.min.js"></script>
-<![endif]-->
-```
+Version 1.0 of this project is optimised for IE9 and above. If you still require support for IE8 then please use [version 0.6.x](https://github.com/davidjbradshaw/image-map-resizer/tree/v0.6.x). Both versions are functionally equivalent.
 
 ### License
-Copyright &copy; 2014 [David J. Bradshaw](https://github.com/davidjbradshaw).
+Copyright &copy; 2014-15 [David J. Bradshaw](https://github.com/davidjbradshaw).
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 [![NPM](https://nodei.co/npm/image-map-resizer.png)](https://nodei.co/npm/image-map-resizer/)

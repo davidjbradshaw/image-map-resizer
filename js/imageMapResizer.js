@@ -10,84 +10,72 @@
     function scaleImageMap(){
 
         function resizeMap() {
-            function resizeAreaTag(cachedAreaCoords){
-                function scaleCoord(e){
-                    return e * scallingFactor[(1===(isWidth = 1-isWidth) ? 'width' : 'height')];
+            function resizeAreaTag(cachedAreaCoords,idx){
+                function scale(coord){
+                    var dimension = ( 1 === (isWidth = 1-isWidth) ? 'width' : 'height' );
+                    return Math.floor(Number(coord) * scallingFactor[dimension]);
                 }
 
                 var isWidth = 0;
 
-                return cachedAreaCoords.split(',').map(Number).map(scaleCoord).map(Math.floor).join(',');
+                areas[idx].coords = cachedAreaCoords.split(',').map(scale).join(',');
             }
 
             var scallingFactor = {
-                width  : displayedImage.width  / sourceImage.width,
-                height : displayedImage.height / sourceImage.height
+                width  : image.width  / image.naturalWidth,
+                height : image.height / image.naturalHeight
             };
 
-            for (var i=0; i < areasLen ; i++) {
-                areas[i].coords = resizeAreaTag(cachedAreaCoordsArray[i]);
-            }
-        }
-
-        function start(){
-            var
-                displayedWidth  = null,
-                displayedHeight = null;
-
-            //WebKit asyncs image loading, so we have to catch the load event.
-            sourceImage.onload = function sourceImageOnLoadF(){
-                displayedWidth = displayedImage.width;
-                displayedHeight = displayedImage.height;
-
-                if ((displayedWidth !== sourceImage.width) || (displayedHeight !== sourceImage.height)) {
-                    resizeMap();
-                }
-            };
-
-            //IE11 can late load this image, so make sure we have the correct sizes (#10)
-            displayedImage.onload = function() {
-                if (null !== displayedWidth && displayedImage.width !== displayedWidth) {
-                    resizeMap();
-                }
-            };
-
-            //Make copy of image, so we can get the actual size measurements
-            sourceImage.src = displayedImage.src;
-        }
-
-        function listenForResize(){
-            function debounce() {
-                clearTimeout(timer);
-                timer = setTimeout(resizeMap, 250);
-            }
-            if (window.addEventListener) { window.addEventListener('resize', debounce, false); }
-            else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
-        }
-
-        function listenForFocus(){
-            if (window.addEventListener) { window.addEventListener('focus', resizeMap, false); }
-            else if (window.attachEvent) { window.attachEvent('onfocus', resizeMap); }
+            cachedAreaCoordsArray.forEach(resizeAreaTag);
         }
 
         function getCoords(e){
-            // normalize coord-string to csv format without any space chars
+            //Normalize coord-string to csv format without any space chars
             return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
+        }
+
+        function debounce() {
+            clearTimeout(timer);
+            timer = setTimeout(resizeMap, 250);
+        }
+
+        function start(){
+            if ((image.width !== image.naturalWidth) || (image.height !== image.naturalHeight)) {
+                resizeMap();
+            }
+        }
+
+        function attach(){
+            map._resize = resizeMap; //Bind resize method to HTML map element
+            image.addEventListener('onload',  resizeMap, false); //Detect late image loads in IE11
+            window.addEventListener('focus',  resizeMap, false); //Cope with window being resized whilst on another tab
+            window.addEventListener('resize', debounce,  false);
+            document.addEventListener('fullscreenchange', resizeMap,  false);
+        }
+
+        function beenHere(){
+            return ('function' === typeof map._resize);
+        }
+
+        function setup(){
+            areas                 = map.getElementsByTagName('area');
+            cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords);
+            image                 = document.querySelector('img[usemap="#'+map.name+'"]');
+
         }
 
         var
             /*jshint validthis:true */
-            map                   = this,
-            areas                 = map.getElementsByTagName('area'),
-            areasLen              = areas.length,
-            cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
-            displayedImage        = document.querySelector('img[usemap="#'+map.name+'"]'),
-            sourceImage           = new Image(),
-            timer                 = null;
+            map   = this,
+            areas = null, cachedAreaCoordsArray = null, image = null, timer = null;
 
-        start();
-        listenForResize();
-        listenForFocus();
+        if (!beenHere()){
+            setup();
+            attach();
+            start();
+        } else {
+            map._resize(); //Already setup, so just resize map
+        }
     }
 
 
@@ -113,16 +101,15 @@
                     init(target);
                     break;
                 default:
-                    throw new TypeError('Unexpected data type ('+typeof(target)+').');
+                    throw new TypeError('Unexpected data type ('+typeof target+').');
             }
         };
     }
 
-
     if (typeof define === 'function' && define.amd) {
         define([],factory);
-    } else if (typeof exports === 'object') { //Node for browserfy
-        module.exports = factory();
+    } else if (typeof module === 'object' && typeof module.exports === 'object'){
+        module.exports = factory(); //Node for browserfy
     } else {
         window.imageMapResize = factory();
     }

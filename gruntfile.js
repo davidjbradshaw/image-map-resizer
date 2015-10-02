@@ -53,13 +53,6 @@ module.exports = function(grunt) {
         },
         src: ['js/imageMapResizer.js'],
         dest: 'js/imageMapResizer.min.js',
-      },
-      ie8: {
-        options:{
-          sourceMapName: 'js/ie8.polyfil.map'
-        },
-        src: ['js/ie8.polyfil.js'],
-        dest: 'js/ie8.polyfil.min.js',
       }
     },
 
@@ -115,7 +108,7 @@ module.exports = function(grunt) {
   grunt.registerTask('notest',  ['jshint','uglify']);
   grunt.registerTask('test',    ['jshint','qunit']);
 
-  grunt.registerTask('postBump',['bump-commit','shell']);
+  grunt.registerTask('postBump',['uglify','bump-commit','shell']);
   grunt.registerTask('patch',   ['default','bump-only:patch','postBump']);
   grunt.registerTask('minor',   ['default','bump-only:minor','postBump']);
   grunt.registerTask('major',   ['default','bump-only:major','postBump']);

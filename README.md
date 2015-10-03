@@ -7,11 +7,7 @@
 
 *This is a simple library that makes HTML Image Maps responsive, so that they automagically stay scaled to the size of the image they are attached to. It detects the window being resized and updates the co-ordinates of the image map accordingly.*
 
-### A note on IE8
-
-This version of image-map-resizer includes support for IE8, if you only support newer browsers, then you should use the [latest version](https://github.com/davidjbradshaw/image-map-resizer).
-
-You need to ensure that IE8 is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to your HTML head section.
+This version of image-map-resizer includes support for IE8, if you only support newer browsers, then you should use the [latest version](https://github.com/davidjbradshaw/image-map-resizer). You will need to ensure that IE8 is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to your HTML head section.
 
 ```html
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

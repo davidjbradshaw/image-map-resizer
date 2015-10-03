@@ -17,7 +17,7 @@ Inclued the [imageMapResizer.min.js](https://raw.github.com/davidjbradshaw/image
 imageMapResize();
 ```
 
-Optionally you can pass a CSS selector that returns a collection of map tags, for example 'map.myMap'. Or a direct reference to a map object in the DOM. This function returns an array of map elements that it has be bound to.
+Optionally you can pass a CSS selector that returns a collection of map tags, for example 'map.myMap'. Or a direct reference to a map object in the DOM. This function returns an array of map elements that it has been bound to.
 
 
 ### jQuery Usage

@@ -45,8 +45,7 @@
             }
         }
 
-        function attach(){
-            map._resize = resizeMap; //Bind resize method to HTML map element
+        function addEventListeners(){
             image.addEventListener('onload',  resizeMap, false); //Detect late image loads in IE11
             window.addEventListener('focus',  resizeMap, false); //Cope with window being resized whilst on another tab
             window.addEventListener('resize', debounce,  false);
@@ -61,7 +60,7 @@
             areas                 = map.getElementsByTagName('area');
             cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords);
             image                 = document.querySelector('img[usemap="#'+map.name+'"]');
-
+            map._resize           = resizeMap; //Bind resize method to HTML map element
         }
 
         var
@@ -71,7 +70,7 @@
 
         if (!beenHere()){
             setup();
-            attach();
+            addEventListeners();
             start();
         } else {
             map._resize(); //Already setup, so just resize map

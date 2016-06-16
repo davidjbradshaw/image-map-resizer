@@ -62,8 +62,10 @@
                 timer = setTimeout(resizeMap, 250);
             }
 
+            addEventListener( displayedImage, 'load',      resizeMap );
             addEventListener( window,  'resize',           debounce  );
             addEventListener( window,  'focus',            resizeMap );
+            addEventListener( window,  'readystatechange', resizeMap );
             addEventListener( document,'fullscreenchange', resizeMap );
         }
 

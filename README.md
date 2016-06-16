@@ -41,7 +41,7 @@ http://davidjbradshaw.com/imagemap-resizer/example/
 
 ### IE8 Support
 
-Version 1.0 of this project is optimised for IE9 and above. If you still require support for IE8 then please use [version 0.6.x](https://github.com/davidjbradshaw/image-map-resizer/tree/v0.6.x). Both versions are functionally equivalent.
+Version 1.0 of this project is optimised for IE9 and above. If you still require support for IE8 then please use [V0.6.x](https://github.com/davidjbradshaw/image-map-resizer/tree/v0.6.x). Both versions are functionally equivalent.
 
 ### License
 Copyright &copy; 2014-15 [David J. Bradshaw](https://github.com/davidjbradshaw).

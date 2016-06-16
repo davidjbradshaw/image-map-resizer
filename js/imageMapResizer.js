@@ -46,7 +46,7 @@
         }
 
         function addEventListeners(){
-            image.addEventListener('onload',  resizeMap, false); //Detect late image loads in IE11
+            image.addEventListener('load',  resizeMap, false); //Detect late image loads in IE11
             window.addEventListener('focus',  resizeMap, false); //Cope with window being resized whilst on another tab
             window.addEventListener('resize', debounce,  false);
             window.addEventListener('readystatechange', resizeMap,  false);

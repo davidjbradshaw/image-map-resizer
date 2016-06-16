@@ -1,4 +1,4 @@
-# Image Map Resize
+# Image Map Resize V0.6 for IE8
 [![Bower version](https://badge.fury.io/bo/image-map-resizer.svg)](http://badge.fury.io/bo/image-map-resizer)
 [![npm version](https://badge.fury.io/js/image-map-resizer.svg)](http://badge.fury.io/js/image-map-resizer)
 [![Code Climate](https://codeclimate.com/github/davidjbradshaw/image-map-resizer/badges/gpa.svg)](https://codeclimate.com/github/davidjbradshaw/image-map-resizer)
@@ -7,9 +7,17 @@
 
 *This is a simple library that makes HTML Image Maps responsive, so that they automagically stay scaled to the size of the image they are attached to. It detects the window being resized and updates the co-ordinates of the image map accordingly.*
 
-*This library can be used with or without jQuery.*
+This version of image-map-resizer includes support for IE8, if you only support newer browsers, then you should use the [latest version](https://github.com/davidjbradshaw/image-map-resizer). You will need to ensure that IE8 is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to your HTML head section.
 
-### Native JS Usage
+```html
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+```
+
+## Usage
+
+This library can be used with native JavaScript or via jQuery.
+
+### Native JS
 
 Inclued the [imageMapResizer.min.js](https://raw.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) script then add the following call to the bottom of your page:
 
@@ -20,7 +28,7 @@ imageMapResize();
 Optionally you can pass a CSS selector that returns a collection of map tags, for example 'map.myMap'. Or a direct reference to a map object in the DOM.
 
 
-### jQuery Usage
+### jQuery
 
 Inclue [jQuery](http://jquery.com) and the [imageMapResizer.min.js](https://raw.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) script and then add the following call to the bottom of your page:
 
@@ -36,16 +44,10 @@ $(document).ready(function() {
 });
 ```
 
+
 ###Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 
-### A note on IE8
-
-To use this library with IE8 you will need to ensure it is running in "[Standards mode](http://en.wikipedia.org/wiki/Internet_Explorer_8#Standards_mode)". This can be done by adding the following to your HTML head section.
-
-```html
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-```
 
 ### License
 Copyright &copy; 2014 [David J. Bradshaw](https://github.com/davidjbradshaw).

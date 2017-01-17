@@ -13,7 +13,7 @@
             function resizeAreaTag(cachedAreaCoords,idx){
                 function scale(coord){
                     var dimension = ( 1 === (isWidth = 1-isWidth) ? 'width' : 'height' );
-                    return Math.floor(Number(coord) * scallingFactor[dimension]);
+                    return padding[dimension] + Math.floor(Number(coord) * scallingFactor[dimension]);
                 }
 
                 var isWidth = 0;
@@ -24,6 +24,10 @@
             var scallingFactor = {
                 width  : image.width  / image.naturalWidth,
                 height : image.height / image.naturalHeight
+            };
+            var padding = {
+                width  : parseInt(window.getComputedStyle(image, null).getPropertyValue('padding-left'), 10),
+                height : parseInt(window.getComputedStyle(image, null).getPropertyValue('padding-top'), 10)
             };
 
             cachedAreaCoordsArray.forEach(resizeAreaTag);

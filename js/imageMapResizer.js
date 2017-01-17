@@ -7,11 +7,11 @@
 (function(){
     'use strict';
 
-    function scaleImageMap(){
+    function scaleImageMap() {
 
         function resizeMap() {
-            function resizeAreaTag(cachedAreaCoords,idx){
-                function scale(coord){
+            function resizeAreaTag(cachedAreaCoords, idx) {
+                function scale(coord) {
                     var dimension = ( 1 === (isWidth = 1-isWidth) ? 'width' : 'height' );
                     return padding[dimension] + Math.floor(Number(coord) * scallingFactor[dimension]);
                 }
@@ -25,15 +25,16 @@
                 width  : image.width  / image.naturalWidth,
                 height : image.height / image.naturalHeight
             };
+
             var padding = {
-                width  : parseInt(window.getComputedStyle(image, null).getPropertyValue('padding-left'), 10),
-                height : parseInt(window.getComputedStyle(image, null).getPropertyValue('padding-top'), 10)
+                width  : Number(window.getComputedStyle(image, null).getPropertyValue('padding-left')),
+                height : Number(window.getComputedStyle(image, null).getPropertyValue('padding-top'))
             };
 
             cachedAreaCoordsArray.forEach(resizeAreaTag);
         }
 
-        function getCoords(e){
+        function getCoords(e) {
             //Normalize coord-string to csv format without any space chars
             return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
         }
@@ -49,7 +50,7 @@
             }
         }
 
-        function addEventListeners(){
+        function addEventListeners() {
             image.addEventListener('load',  resizeMap, false); //Detect late image loads in IE11
             window.addEventListener('focus',  resizeMap, false); //Cope with window being resized whilst on another tab
             window.addEventListener('resize', debounce,  false);
@@ -61,7 +62,7 @@
             return ('function' === typeof map._resize);
         }
 
-        function setup(){
+        function setup() {
             areas                 = map.getElementsByTagName('area');
             cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords);
             image                 = document.querySelector('img[usemap="#'+map.name+'"]');
@@ -73,7 +74,7 @@
             map   = this,
             areas = null, cachedAreaCoordsArray = null, image = null, timer = null;
 
-        if (!beenHere()){
+        if (!beenHere()) {
             setup();
             addEventListeners();
             start();
@@ -85,7 +86,7 @@
 
 
     function factory(){
-        function chkMap(element){
+        function chkMap(element) {
             if(!element.tagName) {
                 throw new TypeError('Object is not a valid DOM element');
             } else if ('MAP' !== element.tagName.toUpperCase()) {
@@ -94,7 +95,7 @@
         }
 
         function init(element){
-            if (element){
+            if (element) {
                 chkMap(element);
                 scaleImageMap.call(element);
                 maps.push(element);
@@ -103,13 +104,13 @@
 
         var maps;
 
-        return function imageMapResizeF(target){
+        return function imageMapResizeF(target) {
             maps = [];  // Only return maps from this call
 
-            switch (typeof(target)){
+            switch (typeof(target)) {
                 case 'undefined':
                 case 'string':
-                    Array.prototype.forEach.call(document.querySelectorAll(target||'map'),init);
+                    Array.prototype.forEach.call(document.querySelectorAll(target||'map'), init);
                     break;
                 case 'object':
                     init(target);
@@ -124,7 +125,7 @@
 
 
     if (typeof define === 'function' && define.amd) {
-        define([],factory);
+        define([], factory);
     } else if (typeof module === 'object' && typeof module.exports === 'object'){
         module.exports = factory(); //Node for browserfy
     } else {

@@ -11,6 +11,7 @@
       "email": "dave@bradshaw.net"
     }
   ],
+  "license": "MIT",
   "description": "Make the HTML image map responsive, so the map scales with the image",
   "repository": {
     "type": "git",
@@ -21,8 +22,8 @@
   "dependencies": {},
   "devDependencies": {
     "grunt": "0.4.1",
-    "grunt-contrib-compress": "0.5.x",
-    "grunt-contrib-uglify": "~0.x.x",
+    "grunt-contrib-compress": "x.x.x",
+    "grunt-contrib-uglify": "~x.x.x",
     "grunt-contrib-jshint": "~0.6.x",
     "grunt-contrib-watch": "~0.5.x",
     "grunt-contrib-qunit": "0.3.x",

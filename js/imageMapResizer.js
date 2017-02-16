@@ -21,14 +21,18 @@
                 areas[idx].coords = cachedAreaCoords.split(',').map(scale).join(',');
             }
 
+            function getPadding(side) {
+                return Number(window.getComputedStyle(image, null).getPropertyValue('padding-' + side));
+            }
+
             var scallingFactor = {
                 width  : image.width  / image.naturalWidth,
                 height : image.height / image.naturalHeight
             };
 
             var padding = {
-                width  : Number(window.getComputedStyle(image, null).getPropertyValue('padding-left')),
-                height : Number(window.getComputedStyle(image, null).getPropertyValue('padding-top'))
+                width  : getPadding('left'),
+                height : getPadding('top')
             };
 
             cachedAreaCoordsArray.forEach(resizeAreaTag);

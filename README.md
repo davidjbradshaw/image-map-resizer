@@ -37,7 +37,7 @@ $(document).ready(function() {
 });
 ```
 
-###Example
+### Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 
 ### IE8 Support

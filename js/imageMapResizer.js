@@ -9,6 +9,17 @@
 
     function scaleImageMap(){
 
+        function get_image() {
+            var imageList = document.querySelectorAll('img[usemap="#'+map.name+'"]');
+            var count = imageList.length;
+            for (var i = 0; i < count; i++){
+                var cImage = imageList[i].offsetParent;
+                if (typeof cImage != undefined && cImage) {
+                    return imageList[i];
+                }
+            }
+        }
+
         function resizeMap() {
             function resizeAreaTag(cachedAreaCoords,idx){
                 function scale(coord){

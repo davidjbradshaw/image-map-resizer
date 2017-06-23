@@ -21,6 +21,7 @@
         }
 
         function resizeMap() {
+            var image = get_image();
             function resizeAreaTag(cachedAreaCoords,idx){
                 function scale(coord){
                     var dimension = ( 1 === (isWidth = 1-isWidth) ? 'width' : 'height' );
@@ -51,6 +52,7 @@
         }
 
         function start(){
+            var image = get_image();
             if ((image.width !== image.naturalWidth) || (image.height !== image.naturalHeight)) {
                 resizeMap();
             }

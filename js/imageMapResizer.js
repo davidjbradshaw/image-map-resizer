@@ -71,7 +71,6 @@
         function setup(){
             areas                 = map.getElementsByTagName('area');
             cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords);
-            image                 = document.querySelector('img[usemap="#'+map.name+'"]');
             map._resize           = resizeMap; //Bind resize method to HTML map element
         }
 

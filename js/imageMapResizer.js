@@ -13,7 +13,7 @@
             function resizeAreaTag(cachedAreaCoords,idx){
                 function scale(coord){
                     var dimension = ( 1 === (isWidth = 1-isWidth) ? 'width' : 'height' );
-                    return Math.floor(Number(coord) * scallingFactor[dimension]);
+                    return Math.floor(Number(coord) * scalingFactor[dimension]);
                 }
 
                 var isWidth = 0;
@@ -21,9 +21,11 @@
                 areas[idx].coords = cachedAreaCoords.split(',').map(scale).join(',');
             }
 
-            var scallingFactor = {
-                width  : image.width  / image.naturalWidth,
-                height : image.height / image.naturalHeight
+            var factor = window.devicePixelRatio ? window.devicePixelRatio : 1;
+
+            var scalingFactor = {
+                width  : factor * image.width  / image.naturalWidth,
+                height : factor * image.height / image.naturalHeight
             };
 
             cachedAreaCoordsArray.forEach(resizeAreaTag);

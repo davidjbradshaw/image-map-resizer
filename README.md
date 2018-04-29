@@ -1,6 +1,7 @@
 # Image Map Resize
 [![Bower version](https://badge.fury.io/bo/image-map-resizer.svg)](http://badge.fury.io/bo/image-map-resizer)
 [![npm version](https://badge.fury.io/js/image-map-resizer.svg)](http://badge.fury.io/js/image-map-resizer)
+[![CDNJS version](https://img.shields.io/cdnjs/v/image-map-resizer.svg)](https://cdnjs.com/libraries/image-map-resizer)
 [![Code Climate](https://codeclimate.com/github/davidjbradshaw/image-map-resizer/badges/gpa.svg)](https://codeclimate.com/github/davidjbradshaw/image-map-resizer)
 ![license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)
 
@@ -36,12 +37,12 @@ $(document).ready(function() {
 });
 ```
 
-###Example
+### Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 
 ### IE8 Support
 
-Version 1.0 of this project is optimised for IE9 and above. If you still require support for IE8 then please use [version 0.6.x](https://github.com/davidjbradshaw/image-map-resizer/tree/v0.6.x). Both versions are functionally equivalent.
+Version 1.0 of this project is optimised for IE9 and above. If you still require support for IE8 then please use [V0.6.x](https://github.com/davidjbradshaw/image-map-resizer/tree/v0.6.x). Both versions are functionally equivalent.
 
 ### License
 Copyright &copy; 2014-15 [David J. Bradshaw](https://github.com/davidjbradshaw).

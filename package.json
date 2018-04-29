@@ -14,10 +14,6 @@
   "description": "Make the HTML image map responsive, so the map scales with the image",
   "github": "https://github.com/davidjbradshaw/image-map-resizer",
   "main": "js/imageMapResizer.min.js",
-  "dependencies": {
-    "ms": "^2.1.1",
-    "semver": "^5.5.0"
-  },
   "devDependencies": {
     "grunt": "0.4.1",
     "grunt-bump": "0.0.x",
@@ -29,6 +25,8 @@
     "grunt-shell": "0.6.x",
     "grunt-text-replace": "0.3.x",
     "load-grunt-tasks": "~0.1.x",
+    "ms": "^2.1.1",
+    "semver": "^5.5.0",
     "time-grunt": "^0.1.2"
   },
   "scripts": {

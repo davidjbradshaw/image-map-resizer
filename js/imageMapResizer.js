@@ -64,10 +64,14 @@
             return ('function' === typeof map._resize);
         }
 
+        function getImg(name){
+            return document.querySelector('img[usemap="'+name+'"]');
+        }
+
         function setup(){
             areas                 = map.getElementsByTagName('area');
             cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords);
-            image                 = document.querySelector('img[usemap="#'+map.name+'"]');
+            image                 = getImg('#' + map.name) || getImg(map.name);
             map._resize           = resizeMap; //Bind resize method to HTML map element
         }
 

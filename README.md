@@ -39,6 +39,10 @@ $(document).ready(function() {
 ### Example
 http://davidjbradshaw.com/imagemap-resizer/example/
 
+### WordPress
+There is a port of this library to WordPress made by @iankevinmcdonald
+https://wordpress.org/plugins/add-image-maps/
+
 ### IE8 Support
 
 Version 1.0 of this project is optimised for IE9 and above. If you still require support for IE8 then please use [V0.6.x](https://github.com/davidjbradshaw/image-map-resizer/tree/v0.6.x). Both versions are functionally equivalent.

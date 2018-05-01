@@ -17,15 +17,12 @@
                 }
 
                 var isWidth = 0;
-
                 areas[idx].coords = cachedAreaCoords.split(',').map(scale).join(',');
             }
 
-            var factor = window.devicePixelRatio ? window.devicePixelRatio : 1;
-
             var scalingFactor = {
-                width  : factor * image.width  / image.naturalWidth,
-                height : factor * image.height / image.naturalHeight
+                width  : image.width  / image.naturalWidth,
+                height : image.height / image.naturalHeight
             };
             
             var padding = {

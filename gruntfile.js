@@ -63,7 +63,7 @@ module.exports = function(grunt) {
 
     bump: {
       options: {
-        files: ['package.json','bower.json','imageMapResizer.jquery.json'],
+        files: ['package.json','bower.json'],
         updateConfigs: ['pkg'],
         commit: true,
         commitMessage: 'Release v%VERSION%',
@@ -83,20 +83,20 @@ module.exports = function(grunt) {
         stderr: true,
         failOnError: true
       },
-      deployExample: {
-        command: function(){
+      // deployExample: {
+      //   command: function(){
 
-          var
-            retStr = '',
-            fs = require('fs');
+      //     var
+      //       retStr = '',
+      //       fs = require('fs');
 
-          if (fs.existsSync('bin')) {
-              retStr = 'bin/deploy.sh';
-          }
+      //     if (fs.existsSync('bin')) {
+      //         retStr = 'bin/deploy.sh';
+      //     }
 
-          return retStr;
-        }
-      },
+      //     return retStr;
+      //   }
+      // },
       npm:{
         command: 'npm publish'
       }

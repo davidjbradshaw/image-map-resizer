@@ -12,7 +12,7 @@
 
 ### Native JS Usage
 
-Inclued the [imageMapResizer.min.js](https://raw.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) script then add the following call to the bottom of your page:
+Include the [imageMapResizer.min.js](https://raw.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) script then add the following call to the bottom of your page:
 
 ```js
 imageMapResize();
@@ -23,7 +23,7 @@ Optionally you can pass a CSS selector that returns a collection of map tags, fo
 
 ### jQuery Usage
 
-Inclue [jQuery](http://jquery.com) and the [imageMapResizer.min.js](https://raw.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) script and then add the following call to the bottom of your page:
+Include [jQuery](http://jquery.com) and the [imageMapResizer.min.js](https://raw.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js) script and then add the following call to the bottom of your page:
 
 ```js
 $('map').imageMapResize();

@@ -9,7 +9,19 @@
 
     function scaleImageMap(){
 
+        function get_image() {
+            var imageList = document.querySelectorAll('img[usemap="#'+map.name+'"]');
+            var count = imageList.length;
+            for (var i = 0; i < count; i++){
+                var cImage = imageList[i].offsetParent;
+                if (typeof cImage != undefined && cImage) {
+                    return imageList[i];
+                }
+            }
+        }
+
         function resizeMap() {
+            var image = get_image();
             function resizeAreaTag(cachedAreaCoords,idx){
                 function scale(coord){
                     var dimension = ( 1 === (isWidth = 1-isWidth) ? 'width' : 'height' );
@@ -44,13 +56,16 @@
         }
 
         function start(){
+            var image = get_image();
             if ((image.width !== image.naturalWidth) || (image.height !== image.naturalHeight)) {
                 resizeMap();
             }
         }
 
         function addEventListeners(){
+            var image = get_image(); //get current visible image
             image.addEventListener('load',  resizeMap, false); //Detect late image loads in IE11
+
             window.addEventListener('focus',  resizeMap, false); //Cope with window being resized whilst on another tab
             window.addEventListener('resize', debounce,  false);
             window.addEventListener('readystatechange', resizeMap,  false);

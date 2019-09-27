@@ -1,0 +1,16 @@
+.DS_Store
+.coveralls.yml
+.idea
+node_modules
+bin
+example
+test
+spec
+src
+npm-debug.log
+bower_components
+bower.json
+gruntfile.js
+karma.conf.js
+test-main.js
+coverage*

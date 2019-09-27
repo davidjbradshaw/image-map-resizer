@@ -1,6 +1,6 @@
 {
   "name": "image-map-resizer",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "repository": {
     "type": "git",
     "url": "https://github.com/davidjbradshaw/image-map-resizer.git"
@@ -15,19 +15,19 @@
   "github": "https://github.com/davidjbradshaw/image-map-resizer",
   "main": "js/imageMapResizer.min.js",
   "devDependencies": {
-    "grunt": "0.4.1",
-    "grunt-bump": "0.0.x",
-    "grunt-contrib-compress": "0.5.x",
-    "grunt-contrib-jshint": "~0.6.x",
-    "grunt-contrib-qunit": "^2.0.0",
-    "grunt-contrib-uglify": "~0.x.x",
-    "grunt-contrib-watch": "~0.5.x",
-    "grunt-shell": "0.6.x",
-    "grunt-text-replace": "0.3.x",
-    "load-grunt-tasks": "~0.1.x",
+    "grunt": "1.0.3",
+    "grunt-bump": "0.8.x",
+    "grunt-contrib-compress": "1.4.x",
+    "grunt-contrib-jshint": "~2.0.x",
+    "grunt-contrib-qunit": "^3.1.0",
+    "grunt-contrib-uglify": "~4.x.x",
+    "grunt-contrib-watch": "~1.1.x",
+    "grunt-shell": "3.0.x",
+    "grunt-text-replace": "0.4.x",
+    "load-grunt-tasks": "~4.0.x",
     "ms": "^2.1.1",
-    "semver": "^5.5.0",
-    "time-grunt": "^0.1.2"
+    "semver": "^5.6.0",
+    "time-grunt": "^2.0.0"
   },
   "scripts": {
     "test": "grunt test"

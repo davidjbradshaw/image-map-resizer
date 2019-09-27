@@ -1,69 +1,69 @@
 /*global module:false*/
 module.exports = function(grunt) {
-
   // show elapsed time at the end
-  require('time-grunt')(grunt);
+  require('time-grunt')(grunt)
 
   // load all grunt tasks
-  require('load-grunt-tasks')(grunt);
-
+  require('load-grunt-tasks')(grunt)
 
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     meta: {
-      banner: '/*! Image Map Resizer (imageMapResizer.min.js ) - v<%= pkg.version %> - ' +
+      banner:
+        '/*! Image Map Resizer (imageMapResizer.min.js ) - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         ' *  Desc: Resize HTML imageMap to scaled image.\n' +
         ' *  Copyright: (c) <%= grunt.template.today("yyyy") %> David J. Bradshaw - dave@bradshaw.net\n' +
         ' *  License: MIT\n */\n',
- 
     },
 
     qunit: {
-      files: ['test/*.html']
+      files: ['test/*.html'],
     },
 
     jshint: {
       options: {
-          globals: {
-          jQuery:false,
-          require:true,
-          process:true
+        asi: true,
+        globals: {
+          jQuery: false,
+          require: true,
+          process: true,
         },
       },
       gruntfile: {
-        src: 'gruntfile.js'
+        src: 'gruntfile.js',
       },
       code: {
-        src: ['js/imageMapResizer.js']
+        src: ['js/imageMapResizer.js'],
       },
     },
 
     uglify: {
       options: {
-        sourceMap:true,
-        report:'gzip',
+        sourceMap: true,
+        sourceMapIncludeSources: true,
+        report: 'gzip',
       },
       main: {
-        options:{
-          banner:'<%= meta.banner %>',
-          sourceMapName: 'js/imageMapResizer.map'
+        options: {
+          banner: '<%= meta.banner %>',
+          sourceMapName: 'js/imageMapResizer.map',
         },
-        src: ['js/imageMapResizer.js'],
+        src: 'js/imageMapResizer.js',
         dest: 'js/imageMapResizer.min.js',
-      }
+      },
     },
 
     watch: {
       files: ['js/**/*'],
-      tasks: 'default'
+      tasks: 'default',
     },
 
     bump: {
       options: {
-        files: ['package.json','bower.json'],
+        files: ['package.json', 'bower.json'],
         updateConfigs: ['pkg'],
         commit: true,
         commitMessage: 'Release v%VERSION%',
@@ -73,15 +73,15 @@ module.exports = function(grunt) {
         tagMessage: 'Version %VERSION%',
         push: true,
         pushTo: 'origin',
-        gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d' // options to use with '$ git describe'
-      }
+        gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d', // options to use with '$ git describe'
+      },
     },
 
     shell: {
-      options:{
+      options: {
         stdout: true,
         stderr: true,
-        failOnError: true
+        failOnError: true,
       },
       // deployExample: {
       //   command: function(){
@@ -97,20 +97,18 @@ module.exports = function(grunt) {
       //     return retStr;
       //   }
       // },
-      npm:{
-        command: 'npm publish'
-      }
-    }
+      npm: {
+        command: 'npm publish',
+      },
+    },
+  })
 
-  });
+  grunt.registerTask('default', ['notest'])
+  grunt.registerTask('notest', ['jshint', 'uglify'])
+  grunt.registerTask('test', ['jshint', 'qunit'])
 
-  grunt.registerTask('default', ['notest']);
-  grunt.registerTask('notest',  ['jshint','uglify']);
-  grunt.registerTask('test',    ['jshint','qunit']);
-
-  grunt.registerTask('postBump',['uglify','bump-commit','shell']);
-  grunt.registerTask('patch',   ['default','bump-only:patch','postBump']);
-  grunt.registerTask('minor',   ['default','bump-only:minor','postBump']);
-  grunt.registerTask('major',   ['default','bump-only:major','postBump']);
-
-};
+  grunt.registerTask('postBump', ['uglify', 'bump-commit', 'shell'])
+  grunt.registerTask('patch', ['default', 'bump-only:patch', 'postBump'])
+  grunt.registerTask('minor', ['default', 'bump-only:minor', 'postBump'])
+  grunt.registerTask('major', ['default', 'bump-only:major', 'postBump'])
+}

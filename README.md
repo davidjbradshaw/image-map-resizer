@@ -4,7 +4,7 @@
 [![Blazing](https://img.shields.io/badge/speed-blazing%20%F0%9F%94%A5-brightgreen.svg?style=flat)](https://twitter.com/acdlite/status/974390255393505280)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/davidjbradshaw)
 
-*This is a simple library that makes HTML Image Maps responsive, so that they automagically stay scaled to the size of the image they are attached to. It detects the window being resized and updates the co-ordinates of the image map accordingly.*
+*This is a simple library that makes HTML Image Maps responsive, so that they automatically stay scaled to the size of the image they are attached to. It detects the window being resized and updates the co-ordinates of the image map accordingly.*
 
 *This library can be used with or without jQuery.*
 
@@ -16,7 +16,7 @@ Include the [imageMapResizer.min.js](https://raw.github.com/davidjbradshaw/image
 imageMapResize();
 ```
 
-Optionally you can pass a CSS selector that returns a collection of map tags, for example 'map.myMap'. Or a direct reference to a map object in the DOM. This function returns an array of map elements that it has been bound to.
+Optionally, you can pass a CSS selector that returns a collection of map tags. For example, 'map.myMap' or a direct reference to a map object in the DOM. This function returns an array of map elements that it has been bound to.
 
 
 ### jQuery Usage
@@ -34,9 +34,6 @@ $(document).ready(function() {
     $('map').imageMapResize();
 });
 ```
-
-### Example
-http://davidjbradshaw.com/imagemap-resizer/example/
 
 ### WordPress
 There is a port of this library to WordPress made by @iankevinmcdonald
